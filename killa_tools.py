@@ -3329,3 +3329,15 @@ def download_media(url, out_dir, kind="audio", max_bytes=_DISCORD_MAX_BYTES):
 
     return _finalize_result(title, duration, uploader, norm_url)
 
+
+
+def copyr8_autofit_v5(input_path, output_path, spectrogram_path, progress=None):
+    """Independent fixed-speed reference profile; never enters V1–V4 searches."""
+    from reference_v5.bot import run
+    return run(input_path, output_path, spectrogram_path, progress)
+
+
+def copyfinger_process(input_path, output_path, spectrogram_path, progress=None):
+    """Apply the fitted reference graph once, without recognition or search."""
+    from reference_v5.bot import run
+    return run(input_path, output_path, spectrogram_path, progress, recognize=False)

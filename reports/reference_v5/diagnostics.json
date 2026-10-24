@@ -1,0 +1,158 @@
+{
+  "format_headers": {
+    "TestSong.ogg": "Input #0, ogg, from 'TestSong.ogg':\n  Duration: 00:02:29.33, start: 0.000000, bitrate: 429 kb/s\n  Stream #0:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s\nAt least one output file must be specified\n",
+    "NewTest.ogg": "Input #0, ogg, from 'NewTest.ogg':\n  Duration: 00:02:29.34, start: 0.000000, bitrate: 487 kb/s\n  Stream #0:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s\n      Metadata:\n        encoder         : Lavc61.3.100 libvorbis\nAt least one output file must be specified\n"
+  },
+  "envelope_alignment": [
+    {
+      "band": [
+        80,
+        300
+      ],
+      "time": 10,
+      "lag_ms": 0,
+      "correlation": 0.7787473929134279,
+      "zero_lag_correlation": 0.7787473929134279
+    },
+    {
+      "band": [
+        80,
+        300
+      ],
+      "time": 40,
+      "lag_ms": -30,
+      "correlation": 0.7493741777067983,
+      "zero_lag_correlation": 0.6049780162354835
+    },
+    {
+      "band": [
+        80,
+        300
+      ],
+      "time": 70,
+      "lag_ms": -30,
+      "correlation": 0.6737172567951152,
+      "zero_lag_correlation": 0.4829774595281902
+    },
+    {
+      "band": [
+        80,
+        300
+      ],
+      "time": 100,
+      "lag_ms": -30,
+      "correlation": 0.46148158175574117,
+      "zero_lag_correlation": 0.23676841751564517
+    },
+    {
+      "band": [
+        80,
+        300
+      ],
+      "time": 130,
+      "lag_ms": -30,
+      "correlation": 0.4907291662998565,
+      "zero_lag_correlation": 0.1719477978714678
+    },
+    {
+      "band": [
+        300,
+        1200
+      ],
+      "time": 10,
+      "lag_ms": 0,
+      "correlation": -0.04642706673668315,
+      "zero_lag_correlation": -0.04642706673668315
+    },
+    {
+      "band": [
+        300,
+        1200
+      ],
+      "time": 40,
+      "lag_ms": -30,
+      "correlation": 0.11899608974976239,
+      "zero_lag_correlation": 0.057555675628285105
+    },
+    {
+      "band": [
+        300,
+        1200
+      ],
+      "time": 70,
+      "lag_ms": -30,
+      "correlation": 0.6809002626156949,
+      "zero_lag_correlation": 0.5567391538519284
+    },
+    {
+      "band": [
+        300,
+        1200
+      ],
+      "time": 100,
+      "lag_ms": -30,
+      "correlation": 0.5861872593214753,
+      "zero_lag_correlation": 0.4793281587534327
+    },
+    {
+      "band": [
+        300,
+        1200
+      ],
+      "time": 130,
+      "lag_ms": -30,
+      "correlation": 0.6348881002593497,
+      "zero_lag_correlation": 0.4142710055519957
+    },
+    {
+      "band": [
+        1200,
+        5000
+      ],
+      "time": 10,
+      "lag_ms": 0,
+      "correlation": 0.08336329329516197,
+      "zero_lag_correlation": 0.08336329329516197
+    },
+    {
+      "band": [
+        1200,
+        5000
+      ],
+      "time": 40,
+      "lag_ms": -20,
+      "correlation": 0.3827340257605828,
+      "zero_lag_correlation": 0.32551394730509225
+    },
+    {
+      "band": [
+        1200,
+        5000
+      ],
+      "time": 70,
+      "lag_ms": -20,
+      "correlation": 0.5919819659732317,
+      "zero_lag_correlation": 0.46923571982666074
+    },
+    {
+      "band": [
+        1200,
+        5000
+      ],
+      "time": 100,
+      "lag_ms": -20,
+      "correlation": 0.7775632925309881,
+      "zero_lag_correlation": 0.7142914708934345
+    },
+    {
+      "band": [
+        1200,
+        5000
+      ],
+      "time": 130,
+      "lag_ms": -20,
+      "correlation": 0.6117378165909483,
+      "zero_lag_correlation": 0.4847243632919366
+    }
+  ]
+}
