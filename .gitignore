@@ -1,0 +1,16 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Analysis scratch: intermediates are large and regenerable
+analysis/out/*.wav
+analysis/out/*.npy
+analysis/out/*.log
+
+# Local media captured while testing
+runtime/
+*.log
+
+# Intermediate renders
+analysis/iter/

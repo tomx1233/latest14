@@ -2018,6 +2018,647 @@ def _copyr8_autofit_macro_search(input_path, output_path, spectrogram_path,
                 pass
 
 
+
+# --------------------------------------------------------------------------- #
+# /copyr8 -- Auto-Fit V5 (Reference)
+#
+# V5 is NOT a generic preset. Its chain is reconstructed from a supplied
+# reference render (NewTest.ogg) of a supplied original (TestSong.ogg); see
+# analysis/REPORT.md for every measurement behind the numbers below.
+#
+# What the two files actually prove (measured, not assumed):
+#   * same performance, same key, same length -- chroma correlation 0.911 at a
+#     0 semitone shift, identical duration (149.33s), and a constant 26.5 ms
+#     render offset with no drift anywhere in the track. So V5 does NOT pitch
+#     or tempo shift: the reference is 0.00 st / 1.00x.
+#   * the reference is a saturated, brick-walled render: +1.9 LUFS integrated,
+#     LRA 0.7 LU, crest 2.63 dB, 27% of samples at the peak, and the high band
+#     is decorrelated from the original (magnitude-squared coherence ~0 above
+#     1 kHz) while its octave energy still follows the music.
+#   * the reference's octave balance is mid-forward and sub-light (the source's
+#     +8.8 dB sub-bass octave becomes -12.5 dB), which a pre-emphasis ->
+#     saturation -> de-emphasis chain reproduces.
+#
+# The chain below was fitted against those measurements (differential
+# evolution over a held-out excerpt, scored on level-matched octave balance,
+# crest factor, L/R correlation, zero-crossing density and the amplitude
+# distribution). It is rendered in ffmpeg because that is deterministic and
+# testable here; macros/CopyR8 AutoFit V5 Reference.txt re-creates the same
+# stages with Audacity 2.3.3's own effects for the macro path.
+# --------------------------------------------------------------------------- #
+_V5_HOME = os.path.dirname(os.path.abspath(__file__))
+
+AUTOFIT_V5_MACRO = os.getenv("COPYR8_V5_MACRO", "").strip() or os.path.join(
+    _V5_HOME, "macros", "CopyR8 AutoFit V5 Reference.txt")
+AUTOFIT_V5_PROFILE = os.getenv("COPYR8_V5_PROFILE", "").strip() or os.path.join(
+    _V5_HOME, "macros", "autofit_v5_reference.json")
+
+# The reference is 0.00 st / 1.00x. V5 may only nudge pitch DOWN by at most
+# 0.20 st and may never change tempo: anything else stops reproducing the
+# reference. Unchanged pitch is always tried first, and the base render (the
+# exact reference chain) is probed before any nudge.
+V5_PITCH_LADDER = (0.0, -0.05, -0.10, -0.15, -0.20)
+V5_TEMPO = 1.0
+# A residual trim per octave is a correction, not a new tone: cap it so a
+# wildly different input can't be EQ'd into something the reference never was.
+V5_TRIM_LIMIT_DB = 6.0
+V5_BAND_CENTERS_HZ = (42, 85, 170, 340, 680, 1360, 2720, 5440, 10880)
+V5_MIN_TRIM_DB = 0.3
+V5_LEVEL_PASSES = 3
+V5_LEVEL_TOLERANCE = 0.4
+
+# Measured fallback so the mode still works if the shipped profile file is
+# missing. These are the same numbers analysis/build_profile.py writes.
+_V5_EMBEDDED_PROFILE = {
+    "name": "CopyR8 Auto-Fit V5 (Reference)",
+    "octave_bands_hz": [[30, 60], [60, 120], [120, 240], [240, 480],
+                        [480, 960], [960, 1920], [1920, 3840],
+                        [3840, 7680], [7680, 15360]],
+    "targets": {
+        "octave_curve_db": [-11.88, 0.04, 1.55, 0.33, -0.33, -1.52, -1.53, -2.43, -2.59],
+        "lufs": 1.9,
+        "sample_peak": 1.1065,
+        "crest_db": 2.63,
+        "lr_corr": 0.8629,
+        "zcr_per_sec": 4752,
+    },
+    "chain": {
+        "pre_highpass_hz": 99.6, "pre_highpass_order": 4,
+        "low_shelf_hz": 132.0, "low_shelf_db": 0.0,
+        "pre_emphasis_hz": 3206.0, "pre_emphasis_db": 16.39,
+        "saturation": "atan", "drive_db": 40.0,
+        "de_emphasis_hz": 5274.0, "de_emphasis_db": -4.65,
+        "post_high_shelf_hz": 17500.0, "post_high_shelf_db": -6.0,
+        "post_low_shelf_db": 0.0, "post_highpass_hz": 0.0,
+        "leveler_threshold_db": -20.0, "leveler_ratio": 10.0,
+        "leveler_makeup_db": 1.5, "leveler_attack_ms": 10.0,
+        "leveler_release_ms": 400.0,
+    },
+    "alignment": {"reference_delay_ms": 26.5, "tempo_ratio": 1.0,
+                  "pitch_shift_semitones": 0.0},
+}
+
+_V5_PROFILE_CACHE = None
+
+
+def autofit_v5_profile():
+    """The measured reference profile (shipped JSON, embedded fallback)."""
+    global _V5_PROFILE_CACHE
+    if _V5_PROFILE_CACHE is not None:
+        return _V5_PROFILE_CACHE
+    data = None
+    try:
+        with open(AUTOFIT_V5_PROFILE, "r", encoding="utf-8") as fh:
+            loaded = json.load(fh)
+        if loaded.get("targets") and loaded.get("chain"):
+            data = loaded
+    except (OSError, ValueError):
+        data = None
+    _V5_PROFILE_CACHE = data or _V5_EMBEDDED_PROFILE
+    return _V5_PROFILE_CACHE
+
+
+def reset_v5_profile_cache():
+    """Drop the cached profile (tests, or after editing the shipped JSON)."""
+    global _V5_PROFILE_CACHE
+    _V5_PROFILE_CACHE = None
+
+
+def _v5_pre_filter(chain):
+    """Rumble cut + low shelf + pre-emphasis -- the 'before the clipper' half."""
+    parts = ["aresample=44100",
+             "aformat=sample_fmts=fltp:channel_layouts=stereo"]
+    if float(chain.get("leveler_ratio") or 0.0) > 1.0:
+        # The reference holds the source's 8.9 dB of section-to-section level
+        # variation down to 0.8 dB (measured over 10 s blocks: the gain it
+        # applies tracks the input level ~1:1). This is that leveller, before
+        # the saturator so the clipper still sets the crest.
+        parts.append(
+            f"acompressor=threshold={float(chain.get('leveler_threshold_db') or -20):g}dB"
+            f":ratio={float(chain['leveler_ratio']):g}"
+            f":attack={float(chain.get('leveler_attack_ms') or 10):g}"
+            f":release={float(chain.get('leveler_release_ms') or 400):g}"
+            f":makeup={float(chain.get('leveler_makeup_db') or 0):.2f}")
+    hp = float(chain.get("pre_highpass_hz") or 0.0)
+    if hp > 0:
+        # Audacity's High-pass Filter at 24 dB/octave == two 2-pole sections.
+        parts += [f"highpass=f={hp:g}:poles=2", f"highpass=f={hp:g}:poles=2"]
+    if float(chain.get("low_shelf_db") or 0.0):
+        parts.append(f"lowshelf=f={float(chain['low_shelf_hz']):g}"
+                     f":g={float(chain['low_shelf_db']):.2f}")
+    if float(chain.get("pre_emphasis_db") or 0.0):
+        parts.append(f"highshelf=f={float(chain['pre_emphasis_hz']):g}"
+                     f":g={float(chain['pre_emphasis_db']):.2f}")
+    return ",".join(parts)
+
+
+def _v5_saturate_filter(chain):
+    """Fixed drive into the soft clipper, then the de-emphasis shelf.
+
+    The reference is a saturated render whose curve is best described by an
+    arctangent soft clip (`atan(x * drive) * 2/pi`), applied after the
+    pre-emphasis. A fixed drive (not a peak-normalised one) is used so the
+    macro can reproduce it with Audacity's Amplify + Limiter, and so two
+    different songs still receive the same amount of saturation.
+    """
+    drive_db = float(chain.get("drive_db") or 0.0)
+    k = 10.0 ** (drive_db / 20.0)
+    expr = f"atan(val(0)*{k:.6f})*0.63661977|atan(val(1)*{k:.6f})*0.63661977"
+    # aeval does not propagate the sample rate, and ffmpeg's biquad filters
+    # compute their coefficients from it: anything placed after aeval without
+    # this restatement is silently bypassed (measured: identical output bytes
+    # with and without the de-emphasis shelf, and the shelf itself inert when
+    # applied after an aeval stage).
+    parts = [f"aeval=exprs='{expr}'",
+             "aformat=sample_rates=44100:sample_fmts=fltp:channel_layouts=stereo"]
+    if float(chain.get("de_emphasis_db") or 0.0):
+        parts.append(f"highshelf=f={float(chain['de_emphasis_hz']):g}"
+                     f":g={float(chain['de_emphasis_db']):.2f}")
+    if float(chain.get("post_high_shelf_db") or 0.0):
+        parts.append(f"highshelf=f={float(chain['post_high_shelf_hz']):g}"
+                     f":g={float(chain['post_high_shelf_db']):.2f}")
+    if float(chain.get("post_low_shelf_db") or 0.0):
+        parts.append(f"lowshelf=f={float(chain['low_shelf_hz']):g}"
+                     f":g={float(chain['post_low_shelf_db']):.2f}")
+    return ",".join(parts)
+
+
+def _v5_pcm(path, max_seconds=None):
+    """Decode `path` to a float32 (n, 2) array through ffmpeg (numpy required)."""
+    import numpy as np  # noqa: PLC0415 - optional dependency, like the V4 layer
+
+    cmd = [_FFMPEG_BIN, "-hide_banner", "-loglevel", "error", "-i", path]
+    if max_seconds:
+        cmd += ["-t", f"{float(max_seconds):.3f}"]
+    cmd += ["-ac", "2", "-ar", "44100", "-f", "f32le", "-acodec", "pcm_f32le", "-"]
+    try:
+        proc = subprocess.run(cmd, capture_output=True, timeout=300,
+                              creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0)
+                              if os.name == "nt" else 0)
+    except FileNotFoundError:
+        raise RuntimeError("ffmpeg is not installed or not on PATH.")
+    except subprocess.TimeoutExpired:
+        raise RuntimeError("ffmpeg timed out decoding that file.")
+    if proc.returncode != 0 or not proc.stdout:
+        err = (proc.stderr or b"").decode("utf-8", "replace").strip()
+        raise RuntimeError("audio decode failed." + (f" ({err})" if err else ""))
+    data = np.frombuffer(proc.stdout, dtype="<f4")
+    return data.reshape(-1, 2).astype("float64")
+
+
+def _v5_octave_curve(x, sr=44100, n_fft=8192, chunk=256):
+    """Octave-band RMS (dB) relative to the 120-1920 Hz median, plus extras."""
+    import numpy as np  # noqa: PLC0415
+
+    bands = autofit_v5_profile().get("octave_bands_hz") or _V5_EMBEDDED_PROFILE["octave_bands_hz"]
+    mono = x.mean(axis=1)
+    if len(mono) < n_fft:
+        mono = np.pad(mono, (0, n_fft - len(mono)))
+    win = np.hanning(n_fft)
+    freqs = np.fft.rfftfreq(n_fft, 1.0 / sr)
+    masks = [(freqs >= lo) & (freqs < hi) for lo, hi in bands]
+    power = np.zeros(len(freqs))
+    hop = n_fft // 2
+    total = 0
+    pos = 0
+    while pos + n_fft <= len(mono):
+        frames = min(chunk, (len(mono) - pos - n_fft) // hop + 1)
+        if frames <= 0:
+            break
+        idx = pos + np.arange(frames)[:, None] * hop + np.arange(n_fft)[None, :]
+        block = mono[idx] * win
+        power += (np.abs(np.fft.rfft(block, axis=1)) ** 2).sum(axis=0)
+        total += frames
+        pos += frames * hop
+    if total:
+        power /= total
+    levels = np.array([10 * np.log10(max(power[m].sum(), 1e-20)) for m in masks])
+    mid = float(np.median(levels[2:6]))
+    curve = [round(float(v - mid), 2) for v in levels]
+
+    peak = float(np.abs(x).max()) if len(x) else 0.0
+    rms = float(np.sqrt((x ** 2).mean())) if len(x) else 0.0
+    m = mono
+    zcr = float(((m[:-1] * m[1:]) < 0).sum() / (len(m) / sr)) if len(m) > 1 else 0.0
+    return {
+        "octave_curve_db": curve,
+        "peak": round(peak, 4),
+        "crest_db": round(float(20 * np.log10(peak / rms)), 2) if rms > 0 else None,
+        "lr_corr": round(float(np.corrcoef(x[:, 0], x[:, 1])[0, 1]), 4),
+        "zcr_per_sec": int(round(zcr)),
+    }
+
+
+def _v5_trim_filter(measured, profile, limit_db=V5_TRIM_LIMIT_DB):
+    """Per-octave residual trim toward the reference curve, clamped and reported.
+
+    Returns (ffmpeg filter string, list of applied dB per octave). This is a
+    static correction measured once from the profile, not a per-song tone
+    rewrite: it is clamped to +/-6 dB and skipped entirely within 0.3 dB.
+    """
+    target = (profile.get("targets") or {}).get("octave_curve_db") or []
+    if not measured or len(measured) != len(target):
+        return "", []
+    applied = []
+    parts = []
+    for center, want, have in zip(V5_BAND_CENTERS_HZ, target, measured):
+        delta = max(-limit_db, min(limit_db, float(want) - float(have)))
+        applied.append(round(delta, 2))
+        if abs(delta) >= V5_MIN_TRIM_DB:
+            parts.append(f"equalizer=f={center}:t=o:w=1:g={delta:.2f}")
+    return ",".join(parts), applied
+
+
+def _v5_chain_filters(chain):
+    """The whole V5 chain as (pre-filter, saturate-filter) ffmpeg strings."""
+    return _v5_pre_filter(chain), _v5_saturate_filter(chain)
+
+
+def _v5_render_chain(input_path, out_wav, profile, progress=None, chain=None,
+                     pre_eq=""):
+    """Render the reconstructed reference chain (original -> reference sound).
+
+    `pre_eq` is an optional residual EQ placed BEFORE the clipper. It has to go
+    there: the chain's output is a saturated, near-square signal, and an EQ
+    after it rings on those edges and pushes the peak up by ~2 dB (measured:
+    crest 2.55 -> 5.35 dB for a 0.8 dB cut), which would break the reference's
+    dynamics. Before the clipper the saturator re-flattens the overshoot.
+    """
+    chain = chain or profile.get("chain") or _V5_EMBEDDED_PROFILE["chain"]
+    pre, sat = _v5_chain_filters(chain)
+    if pre_eq:
+        pre = f"{pre},{pre_eq}"
+    rc, _out, err = _run(_FFMPEG + ["-i", input_path, "-af", f"{pre},{sat}"]
+                         + _CLEAN_META_FLAGS + ["-c:a", "pcm_f32le", out_wav])
+    if rc != 0:
+        raise RuntimeError("V5 reference render failed."
+                           + (f" ({err.strip()})" if err.strip() else ""))
+    if progress:
+        progress(f"rendered the reference chain ({float(chain.get('drive_db') or 0):.1f} dB "
+                 f"into the soft clipper, {float(chain.get('pre_emphasis_db') or 0):+.1f} dB "
+                 "of pre-emphasis)")
+    return out_wav
+
+
+def _v5_render_base(input_path, out_wav, profile, progress=None, passes=2):
+    """Chain render plus its measured residual trim, so probes test the export.
+
+    The trim closes what the chain leaves against the reference's octave
+    balance. It is applied BEFORE the clipper (see _v5_render_chain), clamped by
+    _v5_trim_filter, and refined for at most `passes` renders; the closest
+    render on the measured curve wins.
+    """
+    target = (profile.get("targets") or {}).get("octave_curve_db") or []
+    best = None  # (rmse, wav path, applied trims)
+    work = out_wav + ".pass.wav"
+    acc = [0.0] * len(target)
+    try:
+        for attempt in range(max(1, passes)):
+            pre_eq = ""
+            used = [d for d in acc if abs(d) >= V5_MIN_TRIM_DB]
+            if used:
+                pre_eq = ",".join(
+                    f"equalizer=f={c}:t=o:w=1:g={d:.2f}"
+                    for c, d in zip(V5_BAND_CENTERS_HZ, acc) if abs(d) >= V5_MIN_TRIM_DB)
+            _v5_render_chain(input_path, work, profile,
+                             progress=(progress if attempt == 0 else None),
+                             pre_eq=pre_eq)
+            try:
+                measured = _v5_octave_curve(_v5_pcm(work))
+            except Exception:  # noqa: BLE001 - no numpy: ship this render
+                shutil.copyfile(work, out_wav)
+                return {"trim_db": [round(v, 2) for v in acc],
+                        "note": "residual trim not measured (unavailable on this host)"}
+            err = [float(w) - float(h) for w, h in
+                   zip(target, measured["octave_curve_db"])]
+            rmse = float((sum(e * e for e in err) / max(len(err), 1)) ** 0.5)
+            if best is None or rmse < best[0]:
+                shutil.copyfile(work, out_wav)
+                best = (rmse, out_wav, [round(v, 2) for v in acc], rmse)
+            if rmse <= 0.5:
+                break
+            # add the measured error onto the accumulated pre-clip EQ
+            acc = [a + e for a, e in zip(acc, err)]
+            acc = [max(-V5_TRIM_LIMIT_DB, min(V5_TRIM_LIMIT_DB, a)) for a in acc]
+        if progress:
+            used = [f"{d:+.1f} dB" for d in best[2] if abs(d) >= V5_MIN_TRIM_DB]
+            progress(f"reference curve matched to {best[3]:.1f} dB RMSE across the "
+                     "nine octaves"
+                     + (f" (trim {', '.join(used)})" if used else ""))
+        return {"trim_db": best[2], "note": f"residual octave trim, {best[3]:.2f} dB RMSE"}
+    finally:
+        try:
+            os.remove(work)
+        except OSError:
+            pass
+
+
+def _v5_apply_residual(input_path, out_wav, profile, limit_db=V5_TRIM_LIMIT_DB,
+                       progress=None):
+    """When Audacity already ran the chain, only correct the residual trim."""
+    try:
+        measured = _v5_octave_curve(_v5_pcm(input_path))
+    except Exception:  # noqa: BLE001 - no numpy/ffmpeg decode: ship the macro output
+        if os.path.abspath(input_path) != os.path.abspath(out_wav):
+            shutil.copyfile(input_path, out_wav)
+        return {"trim_db": [], "note": "residual trim skipped (measurement unavailable)"}
+    trim, applied = _v5_trim_filter(measured["octave_curve_db"], profile, limit_db)
+    if not trim:
+        if os.path.abspath(input_path) != os.path.abspath(out_wav):
+            shutil.copyfile(input_path, out_wav)
+        return {"trim_db": applied, "note": "reference curve already matched"}
+    rc, _out, err = _run(_FFMPEG + ["-i", input_path, "-af", trim]
+                         + _CLEAN_META_FLAGS + ["-c:a", "pcm_f32le", out_wav])
+    if rc != 0:
+        raise RuntimeError("V5 residual trim failed."
+                           + (f" ({err.strip()})" if err.strip() else ""))
+    if progress:
+        used = [d for d in applied if abs(d) >= V5_MIN_TRIM_DB]
+        progress("residual trim applied: "
+                 + ", ".join(f"{d:+.1f} dB" for d in used))
+    return {"trim_db": applied, "note": "residual octave trim applied"}
+
+
+def _v5_export(work_wav, output_path, profile, trim_filter="", progress=None):
+    """Encode the reference render to MP3 at the reference's own loudness.
+
+    Unlike the other auto-fits, V5 does NOT chase the *source's* loudness: the
+    reference is a +1.9 LUFS brick-wall render, and matching the source instead
+    would throw the target sound away. The exported file is level-matched to
+    the measured reference (±0.4 LU) with the peak held at the reference's.
+    """
+    target = profile.get("targets") or {}
+    want_lufs = target.get("lufs")
+    # _loudness() reports true peak in dBTP, so the guard must use the
+    # reference's true peak -- not its (linear) sample peak.
+    want_peak_dbtp = target.get("true_peak_dbtp")
+    af = (trim_filter + "," if trim_filter else "") + "volume={gain:.2f}dB"
+
+    tmp = output_path + ".lvl.mp3"
+    total_gain = 0.0
+    out_lufs = out_peak = None
+    passes = 0
+    for _ in range(V5_LEVEL_PASSES if want_lufs is not None else 1):
+        cmd = (_FFMPEG + ["-i", work_wav, "-af", af.format(gain=total_gain)]
+               + _CLEAN_MP3_FLAGS + ["-c:a", "libmp3lame", "-b:a", "320k", tmp])
+        rc, _out, err = _run(cmd)
+        if rc != 0:
+            raise RuntimeError("V5 export encode failed."
+                               + (f" ({err.strip()})" if err.strip() else ""))
+        os.replace(tmp, output_path)
+        passes += 1
+        if want_lufs is None:
+            break
+        try:
+            out_lufs, out_peak = _loudness(output_path)
+        except Exception:  # noqa: BLE001
+            break
+        if out_lufs is None:
+            break
+        step = float(want_lufs) - out_lufs
+        if (want_peak_dbtp is not None and out_peak is not None
+                and out_peak > float(want_peak_dbtp) + 0.5):
+            step -= out_peak - float(want_peak_dbtp)
+        if abs(step) <= V5_LEVEL_TOLERANCE:
+            break
+        step = max(-AUTOFIT_MAX_GAIN_DB, min(AUTOFIT_MAX_GAIN_DB, step))
+        if progress:
+            progress(f"level: {out_lufs:.1f} LUFS against the reference's "
+                     f"{float(want_lufs):.1f}, applying {step:+.1f} dB")
+        total_gain += step
+    return {"target_lufs": want_lufs, "out_lufs": out_lufs,
+            "out_peak": out_peak, "gain_db": round(total_gain, 2),
+            "passes": passes}
+
+
+def _v5_match_report(output_path, profile):
+    """Measure the delivered file against the reference profile."""
+    report = {"target": {}, "out": {}, "band_delta_db": []}
+    target = profile.get("targets") or {}
+    try:
+        lufs, peak = _loudness(output_path)
+    except Exception:  # noqa: BLE001
+        lufs, peak = None, None
+    report["target"] = {k: target.get(k) for k in
+                        ("lufs", "crest_db", "lr_corr", "zcr_per_sec", "octave_curve_db")}
+    report["target"]["lufs"] = target.get("lufs")
+    try:
+        measured = _v5_octave_curve(_v5_pcm(output_path))
+    except Exception:  # noqa: BLE001
+        report["note"] = "output measurement unavailable on this host"
+        report["out"] = {"lufs": lufs, "true_peak": peak}
+        return report
+    report["out"] = {"lufs": lufs, "true_peak": peak,
+                     "crest_db": measured["crest_db"],
+                     "lr_corr": measured["lr_corr"],
+                     "zcr_per_sec": measured["zcr_per_sec"],
+                     "octave_curve_db": measured["octave_curve_db"]}
+    want = target.get("octave_curve_db") or []
+    if want and len(want) == len(measured["octave_curve_db"]):
+        report["band_delta_db"] = [round(float(h) - float(w), 2) for w, h in
+                                   zip(want, measured["octave_curve_db"])]
+        report["band_rmse_db"] = round(float(
+            (sum(d * d for d in report["band_delta_db"]) / len(report["band_delta_db"])) ** 0.5), 2)
+    return report
+
+
+def copyr8_autofit_v5(input_path, output_path, spectrogram_path, progress=None,
+                      macro_fn=None):
+    """Auto-Fit V5: the reference chain, then the shared recognition checks.
+
+    Stage 1 runs the reconstructed reference chain -- through the configured
+    Audacity macro when one is available (its residual octave error is then
+    trimmed), otherwise through the built-in ffmpeg render.
+    Stage 2 probes that render exactly like V3/V4 do, with the same gap-free
+    windows, original-file control and shared API pacing, and ships it when it
+    is already unreadable AND a service still knows the original.
+    Stage 3, only when the render is still recognised, walks V5's bounded
+    ladder: unchanged pitch first, then at most -0.20 st, never a tempo change
+    -- the reference proves 0.00 st / 1.00x, so anything larger would stop
+    being that sound. Every rung is reported with its distance from the
+    reference. A clean result is still corroborated against the untouched
+    original; an inconclusive API answer never counts as a clean miss and, if
+    no service ever answers, no file is exported.
+    """
+    if not os.path.isfile(input_path):
+        raise RuntimeError("the input file could not be read from disk.")
+    acoustid_backend.validate_setup(required=False)
+    songrec_backend.validate_setup(required=False)
+
+    profile = autofit_v5_profile()
+    workdir = os.path.dirname(output_path) or "."
+    base_wav = os.path.join(workdir, "autofit_v5_base.wav")
+    macro_wav = os.path.join(workdir, "autofit_v5_macro.wav")
+    work_wav = os.path.join(workdir, "autofit_v5_work.wav")
+    macro_info = {"applied": False, "steps": [], "metadata": False, "reason": None}
+    chain_info = {"render": None, "trim_db": []}
+
+    try:
+        base_path = input_path
+        if macro_fn is not None:
+            if progress:
+                progress("running the V5 reference chain in hidden Audacity...")
+            try:
+                macro_result = macro_fn(input_path, macro_wav, progress) or {}
+                if os.path.isfile(macro_wav):
+                    macro_info["applied"] = True
+                    macro_info["steps"] = list(macro_result.get("steps") or [])
+                    macro_info["metadata"] = bool(macro_result.get("metadata"))
+                    if progress:
+                        progress("Audacity chain applied; correcting its residual "
+                                 "octave error against the reference profile...")
+                    residual = _v5_apply_residual(macro_wav, base_wav, profile,
+                                                  progress=progress)
+                    chain_info.update(residual)
+                    chain_info["render"] = "audacity macro + residual trim"
+                    base_path = base_wav
+                else:
+                    macro_info["reason"] = ("the macro ran but wrote no output; "
+                                            "using the built-in reference render")
+            except Exception as e:  # noqa: BLE001
+                macro_info["reason"] = (f"the macro failed ({e}); using the built-in "
+                                        "reference render")
+            if macro_info["reason"] and progress:
+                progress(macro_info["reason"])
+
+        if not macro_info["applied"]:
+            if progress:
+                progress("rendering the V5 reference chain from the measurements...")
+            trim_info = _v5_render_base(input_path, base_wav, profile,
+                                        progress=progress)
+            if isinstance(trim_info, dict):
+                chain_info.update(trim_info)
+            chain_info["render"] = "built-in reference chain"
+            base_path = base_wav
+
+        if progress:
+            progress("checking the reference render for gaps between probe windows "
+                     "and testing it against the recogniser...")
+        ok, counts = _probe_sweep(base_path, _gapfree_windows(base_path),
+                                  progress=progress)
+        if ok:
+            verified = _control_check(input_path, progress=progress)
+            pitch, tempo, cost = 0.0, 1.0, 0.0
+            final_wav = base_path
+            if verified is False:
+                # Neither service knows the original, so "clean" proves nothing.
+                # Keep the reference sound (it is what was asked for) and say so.
+                if progress:
+                    progress("control failed: neither service knows the original "
+                             "-- keeping the reference render, marked unverified")
+            elif verified is True and progress:
+                progress("control ok: both services missed the render and a service "
+                         "still knows the original")
+            result = {"pitch": pitch, "tempo": tempo, "cost": cost, "counts": counts,
+                      "verified": verified, "clean": True, "best_effort": False}
+        else:
+            if progress:
+                progress("the filter still detects the reference render; trying "
+                         f"unchanged pitch first, then at most 0.20 st downward "
+                         f"({len(V5_PITCH_LADDER) - 1} nudges, no tempo change)...")
+            result = _v5_bounded_ladder(input_path, base_path, work_wav,
+                                        base_counts=counts, progress=progress)
+            final_wav = work_wav
+
+        trim_filter = ""
+        if chain_info.get("trim_db") is None:
+            chain_info["trim_db"] = []
+        export = _v5_export(final_wav, output_path, profile, trim_filter="",
+                            progress=progress)
+        rc, _out, err = _run(_FFMPEG + ["-i", output_path, "-lavfi",
+                                        "showspectrumpic=s=1100x280:legend=0:gain=.5:color=plasma",
+                                        spectrogram_path])
+        if rc != 0:
+            raise RuntimeError("spectrogram render failed."
+                               + (f" ({err.strip()})" if err.strip() else ""))
+        _brand_spectrogram(spectrogram_path)
+
+        report = _v5_match_report(output_path, profile)
+        if progress:
+            delta = ""
+            if report.get("band_rmse_db") is not None:
+                delta = f", octave balance within {report['band_rmse_db']:.1f} dB"
+            progress(f"done: reference render at {result['pitch']:+.2f} st / "
+                     f"{result['tempo']:.2f}x{delta}"
+                     + (f", {export['out_lufs']:.1f} LUFS vs reference "
+                        f"{float(profile['targets']['lufs']):.1f}"
+                        if export.get("out_lufs") is not None else ""))
+
+        return {
+            "pitch": result["pitch"],
+            "tempo": result["tempo"],
+            "cost": result.get("cost"),
+            "clean": bool(result.get("clean")),
+            "counts": result.get("counts"),
+            "verified": result.get("verified"),
+            "best_effort": bool(result.get("best_effort")),
+            "tremolo_depth": 0.0,
+            "tremolo_rate": 0.0,
+            "tremolo_applied": False,
+            "tremolo_reason": None,
+            "level_gain_db": export.get("gain_db"),
+            "loudness": {"source_lufs": profile["targets"].get("lufs"),
+                         "out_lufs": export.get("out_lufs"),
+                         "out_peak": export.get("out_peak"),
+                         "gain_db": export.get("gain_db")},
+            "reference": report,
+            "chain": chain_info,
+            "macro": macro_info,
+            "info": _result_info(output_path, progress=progress,
+                                 loudness=export),
+        }
+    finally:
+        for leftover in (base_wav, base_wav + ".chain.wav", macro_wav, work_wav,
+                         output_path + ".lvl.mp3"):
+            try:
+                os.remove(leftover)
+            except OSError:
+                pass
+
+
+def _v5_bounded_ladder(original_path, base_path, work_wav, base_counts=None,
+                       progress=None):
+    """V5's whole shift ladder: unchanged pitch, then <=0.20 st down, no tempo.
+
+    Never speeds up, never changes tempo, never leaves the reference's sound
+    family -- so a "win" here is still the reference render, just a hair flat.
+    An inconclusive API answer is never counted as a miss: if no probe ever
+    produced a usable answer, this raises instead of exporting a file.
+    """
+    got_answer = any(c is not None for c in (base_counts or []))
+    for idx, pitch in enumerate(V5_PITCH_LADDER):
+        if idx == 0:
+            continue  # the base render was already probed by the caller
+        if progress:
+            progress(f"trying {pitch:+.2f} st / {V5_TEMPO:.2f}x "
+                     f"({abs(pitch):.2f} st below the reference)...")
+        _render_shifted_wav(base_path, work_wav, pitch, V5_TEMPO)
+        ok, counts = _probe_sweep(work_wav, _gapfree_windows(work_wav),
+                                  progress=progress)
+        got_answer = got_answer or any(c is not None for c in (counts or []))
+        if ok:
+            verified = _control_check(original_path, progress=progress)
+            if progress:
+                progress(f"clean at {pitch:+.2f} st / {V5_TEMPO:.2f}x -- "
+                         f"{abs(pitch):.2f} st away from the reference")
+            return {"pitch": pitch, "tempo": V5_TEMPO, "cost": abs(pitch),
+                    "counts": counts, "verified": verified, "clean": True,
+                    "best_effort": False}
+    if not got_answer:
+        raise RuntimeError(
+            "The recogniser never returned a usable answer even after pausing "
+            "and retrying (a recognition API is unavailable / the network can't "
+            "reach it). No file was written. Try again in a few minutes.")
+    pitch = V5_PITCH_LADDER[-1]
+    _render_shifted_wav(base_path, work_wav, pitch, V5_TEMPO)
+    if progress:
+        progress(f"every setting was still recognised; keeping the strongest "
+                 f"allowed setting ({pitch:+.2f} st) as a best effort -- "
+                 "not marked clean")
+    return {"pitch": pitch, "tempo": V5_TEMPO, "cost": abs(pitch),
+            "counts": None, "verified": None, "clean": False, "best_effort": True}
+
+
 # --------------------------------------------------------------------------- #
 # /shazam -- song identification placeholder (kept, disabled)
 # --------------------------------------------------------------------------- #

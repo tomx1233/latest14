@@ -1,0 +1,7 @@
+Compressor:Threshold="-20" NoiseFloor="-40" Ratio="10" AttackTime="0.1" ReleaseTime="1" Normalize="0" UsePeak="0"
+High-passFilter:frequency="99.6" rolloff="dB24"
+BassAndTreble:Bass="0" Gain="0" Link_Sliders="0" Treble="16.39"
+Amplify:Ratio="149.62" AllowClipping="1"
+Limiter:type="SoftClip" gain-L="0" gain-R="0" thresh="-0.1" hold="10" makeup="Yes"
+BassAndTreble:Bass="0" Gain="0" Link_Sliders="0" Treble="-6"
+Normalize:PeakLevel="-1" RemoveDcOffset="0" ApplyGain="1" StereoIndependent="0"

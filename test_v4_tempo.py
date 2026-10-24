@@ -250,7 +250,8 @@ class V4SlowRenderAndReplyTests(unittest.TestCase):
                 fields = []
                 namespace = {
                     "result": {"clean": True, "verified": False, "pitch": pitch, "tempo": tempo},
-                    "is_v4": is_v4, "apis_list": "the recognition services",
+                    "is_v4": is_v4, "is_v5": False,
+                    "apis_list": "the recognition services",
                     "embed": types.SimpleNamespace(add_field=lambda **kwargs: fields.append(kwargs)),
                 }
                 module = ast.Module(body=[verdict, speed], type_ignores=[])

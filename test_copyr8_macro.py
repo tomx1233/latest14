@@ -470,7 +470,7 @@ class BotRoutingTests(unittest.TestCase):
             with self.subTest(preset=preset), patch.object(processor, "run_macro_blocking") as run:
                 tools = Mock()
                 namespace = {"is_v3": preset == "autofit-v3", "is_v2": preset == "autofit-v2",
-                             "is_v4": preset == "autofit-v4",
+                             "is_v4": preset == "autofit-v4", "is_v5": False,
                              "killa_tools": tools,
                              "AUTOFIT_V3_MACRO": self.configured_macro({}),
                              "AUTOFIT_V4_MACRO": self.configured_macro({}, "AUTOFIT_V4_MACRO")}

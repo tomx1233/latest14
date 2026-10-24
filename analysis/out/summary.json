@@ -1,0 +1,137 @@
+{
+  "source": {
+    "octave_curve_db": [
+      8.66,
+      5.94,
+      5.09,
+      0.61,
+      -0.61,
+      -2.93,
+      -3.89,
+      -6.17,
+      -7.89
+    ],
+    "peak": 2.9216,
+    "crest_db": 19.52,
+    "lr_corr": 0.9676,
+    "zcr_per_sec": 1672,
+    "lufs": -8.8,
+    "true_peak": 12.4,
+    "band_levels_db": [
+      -14.51,
+      -17.38,
+      -18.16,
+      -23.05,
+      -23.63,
+      -25.99,
+      -27.19,
+      -28.36,
+      -29.78
+    ]
+  },
+  "reference": {
+    "octave_curve_db": [
+      -11.88,
+      0.04,
+      1.55,
+      0.33,
+      -0.33,
+      -1.52,
+      -1.53,
+      -2.43,
+      -2.59
+    ],
+    "peak": 1.1065,
+    "crest_db": 2.63,
+    "lr_corr": 0.8629,
+    "zcr_per_sec": 4752,
+    "lufs": 1.9,
+    "true_peak": 4.2,
+    "band_levels_db": [
+      -23.52,
+      -11.35,
+      -9.56,
+      -10.8,
+      -11.17,
+      -12.46,
+      -12.57,
+      -13.49,
+      -13.63
+    ]
+  },
+  "output": {
+    "octave_curve_db": [
+      -13.05,
+      -0.51,
+      2.57,
+      0.18,
+      -0.18,
+      -1.68,
+      -1.11,
+      -2.04,
+      -2.91
+    ],
+    "peak": 1.4283,
+    "crest_db": 5.0,
+    "lr_corr": 0.796,
+    "zcr_per_sec": 5646,
+    "lufs": 1.9,
+    "true_peak": 3.7,
+    "band_levels_db": [
+      -25.24,
+      -12.52,
+      -9.03,
+      -11.53,
+      -11.48,
+      -13.06,
+      -12.68,
+      -13.66,
+      -14.57
+    ]
+  },
+  "render_wav": {
+    "octave_curve_db": [
+      -13.05,
+      -0.52,
+      2.57,
+      0.18,
+      -0.18,
+      -1.69,
+      -1.1,
+      -2.05,
+      -2.92
+    ],
+    "peak": 0.9905,
+    "crest_db": 2.72,
+    "lr_corr": 0.7969,
+    "zcr_per_sec": 5605,
+    "lufs": 1.0,
+    "true_peak": 1.5,
+    "note": "pre-encode, before the export gain"
+  },
+  "codec_control": {
+    "note": "NewTest.ogg re-encoded to MP3 320k and decoded again",
+    "reference_crest_db": 2.63,
+    "reencoded_crest_db": 4.37,
+    "reference_peak": 1.1065,
+    "reencoded_peak": 1.3513
+  },
+  "output_minus_reference_band_db": [
+    -1.17,
+    -0.55,
+    1.02,
+    -0.15,
+    0.15,
+    -0.16,
+    0.42,
+    0.39,
+    -0.32
+  ],
+  "output_minus_reference_band_rmse_db": 0.6,
+  "coherence": {
+    "source_vs_reference_lo": 0.272,
+    "output_vs_reference_lo": 0.203,
+    "source_vs_reference_hi": 0.0067,
+    "output_vs_reference_hi": 0.002
+  }
+}

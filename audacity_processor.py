@@ -1,4 +1,4 @@
-r"""CopyR8 Auto-Fit V3/V4 -- run an Audacity macro over an audio file.
+r"""CopyR8 Auto-Fit V3/V4/V5 -- run an Audacity macro over an audio file.
 
 Bridges the bot to Audacity 2.3.3's scripting pipe (mod-script-pipe).  The
 configured macro runs through Audacity's own macro runner (the same path as
@@ -16,9 +16,9 @@ Configuration (optional environment variables):
 
 The macro to run is chosen by the caller (see resolve_macro); it must exist
 in Audacity's Macros folder (%APPDATA%\Audacity\Macros). The bundled
-CopyR8 AutoFit V3 and V4 macros are installed there automatically before
-Audacity starts; only those bot-managed files are synchronized, never
-custom macros.
+CopyR8 AutoFit V3, V4 and V5 (Reference) macros are installed there
+automatically before Audacity starts; only those bot-managed files are
+synchronized, never custom macros.
 
 Metadata (ID3 tags etc.) is copied from the original file onto the
 processed output with an ffmpeg stream-copy remux, so tags survive the
@@ -39,7 +39,8 @@ from audacity_pipe import AudacitySession, PipeError, parse_macro
 
 BUNDLED_V3_MACRO = Path(__file__).resolve().parent / "macros" / "CopyR8 AutoFit V3.txt"
 BUNDLED_V4_MACRO = Path(__file__).resolve().parent / "macros" / "CopyR8 AutoFit V4.txt"
-BUNDLED_MACROS = (BUNDLED_V3_MACRO, BUNDLED_V4_MACRO)
+BUNDLED_V5_MACRO = Path(__file__).resolve().parent / "macros" / "CopyR8 AutoFit V5 Reference.txt"
+BUNDLED_MACROS = (BUNDLED_V3_MACRO, BUNDLED_V4_MACRO, BUNDLED_V5_MACRO)
 
 MACRO_DIR = os.path.join(os.environ.get("APPDATA", ""), "Audacity", "Macros")
 

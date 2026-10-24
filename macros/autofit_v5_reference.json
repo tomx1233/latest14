@@ -1,0 +1,139 @@
+{
+  "name": "CopyR8 Auto-Fit V5 (Reference)",
+  "version": 1,
+  "derived_from": {
+    "reference": "NewTest.ogg",
+    "original": "TestSong.ogg",
+    "reference_sha256": "98ddc02092d8a99bde5c0d0e9b2e7d815f12d51812e6ff2e1b99f3d90740e951",
+    "original_sha256": "e730370fe3e9742671d5b4f9657b27df4cb48cd23961d779575ba385e99632c3",
+    "sample_rate": 44100,
+    "channels": 2,
+    "duration_s": 149.335
+  },
+  "alignment": {
+    "reference_delay_ms": 26.5,
+    "reference_delay_samples": 1169,
+    "tempo_ratio": 1.0,
+    "pitch_shift_semitones": 0.0,
+    "chroma_correlation_at_0st": 0.911,
+    "note": "same performance, same key, same length: the 26.5 ms offset is a fixed render/plugin latency, not a musical change; local lag is constant across the whole track (no drift, so no tempo change)."
+  },
+  "octave_bands_hz": [
+    [
+      30,
+      60
+    ],
+    [
+      60,
+      120
+    ],
+    [
+      120,
+      240
+    ],
+    [
+      240,
+      480
+    ],
+    [
+      480,
+      960
+    ],
+    [
+      960,
+      1920
+    ],
+    [
+      1920,
+      3840
+    ],
+    [
+      3840,
+      7680
+    ],
+    [
+      7680,
+      15360
+    ]
+  ],
+  "targets": {
+    "lufs": 1.9,
+    "true_peak_dbtp": 4.2,
+    "lra_lu": 0.7,
+    "octave_curve_db": [
+      -11.88,
+      0.04,
+      1.55,
+      0.33,
+      -0.33,
+      -1.52,
+      -1.53,
+      -2.43,
+      -2.59
+    ],
+    "octave_curve_db_source": [
+      8.66,
+      5.94,
+      5.09,
+      0.61,
+      -0.61,
+      -2.93,
+      -3.89,
+      -6.17,
+      -7.89
+    ],
+    "rms_dbfs": -1.75,
+    "sample_peak": 1.1065,
+    "sample_peak_dbfs": 0.88,
+    "crest_db": 2.63,
+    "lr_corr": 0.8629,
+    "zcr_per_sec": 4752,
+    "short_term_db_median": -1.99,
+    "short_term_db_p05": -3.0,
+    "short_term_db_p95": -1.73
+  },
+  "source": {
+    "rms_dbfs": -10.21,
+    "sample_peak": 2.9216,
+    "sample_peak_dbfs": 9.31,
+    "crest_db": 19.52,
+    "lr_corr": 0.9676,
+    "zcr_per_sec": 1672,
+    "short_term_db_median": -9.65,
+    "short_term_db_p05": -26.31,
+    "short_term_db_p95": -8.92
+  },
+  "chain": {
+    "pre_highpass_hz": 99.6,
+    "pre_highpass_order": 4,
+    "low_shelf_hz": 132.0,
+    "low_shelf_db": 0.0,
+    "pre_emphasis_hz": 3206.0,
+    "pre_emphasis_db": 16.39,
+    "saturation": "atan",
+    "drive_db": 40.0,
+    "de_emphasis_hz": 5274.0,
+    "de_emphasis_db": -4.65,
+    "post_low_shelf_db": 0.0,
+    "post_highpass_hz": 0.0,
+    "leveler_threshold_db": -20.0,
+    "leveler_ratio": 10.0,
+    "leveler_makeup_db": 1.5,
+    "leveler_attack_ms": 10.0,
+    "leveler_release_ms": 400.0,
+    "fit": {
+      "excerpt_s": [
+        20.0,
+        32.0
+      ],
+      "band_rmse_db": 0.97,
+      "crest_db": 2.23,
+      "zcr_ratio": 0.996,
+      "lr_corr": 0.822,
+      "drive_note": "drive 40.0 dB chosen by a full-track sweep: crest 2.61 dB against the reference's 2.63 (the 20-32 s excerpt alone preferred 41.1)",
+      "post_high_shelf_note": "clipping harmonics above 16 kHz were 5-6 dB hotter than the reference (16-20 kHz -11.2 vs -16.7 dB re 1-2 kHz); a 17.5 kHz shelf at -6 dB closes that and takes the crest to 2.61"
+    },
+    "post_high_shelf_hz": 17500.0,
+    "post_high_shelf_db": -6.0
+  }
+}

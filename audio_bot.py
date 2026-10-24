@@ -24,6 +24,8 @@ DMs, other servers, any channel. The owner can always run everything:
                                 Auto-Fit V3 = bundled macro chain + mixed search that
                                               reuses both playbooks until it's unreadable.
                                 Auto-Fit V4 = original macro + spectral add-on + slower-tempo, minimal-pitch search.
+                                Auto-Fit V5 = reference-reconstruction chain (own macro/profile),
+                                              unchanged pitch and tempo, bounded nudges only.
                                 Subtle / Balanced / Stealth / Aggressive = fixed key/speed shifts.
   /lookup <file>              -- identify a song with Shazam: title, artist, album,
                                  release, cover art, and a link to the Shazam page.
@@ -164,6 +166,13 @@ AUTOFIT_V3_MACRO = os.getenv("COPYR8_V3_MACRO", "").strip() or os.path.join(
 # (duplicate/pan, Tremolo x2, SC1 x2), then add spectral shaping in the engine.
 AUTOFIT_V4_MACRO = os.getenv("COPYR8_V4_MACRO", "").strip() or os.path.join(
     HERE, "macros", "CopyR8 AutoFit V4.txt")
+
+# /copyr8's Auto-Fit V5 (Reference) uses its own chain, reconstructed from the
+# supplied reference render. Its measured profile ships next to the macro and
+# is read by the engine; both paths are env-overridable, and the V3/V4 macros
+# are untouched by either.
+AUTOFIT_V5_MACRO = os.getenv("COPYR8_V5_MACRO", "").strip() or os.path.join(
+    HERE, "macros", "CopyR8 AutoFit V5 Reference.txt")
 
 # /monitor polling. Polls each watched asset every MONITOR_INTERVAL_SECONDS, and
 # gives up after MONITOR_TIMEOUT_SECONDS (a Roblox moderation review rarely takes
@@ -2178,6 +2187,7 @@ bot.tree.add_command(analyze_group)
         app_commands.Choice(name="Auto-Fit V2 (closest)", value="autofit-v2"),
         app_commands.Choice(name="Auto-Fit V3 (macro + mixed)", value="autofit-v3"),
         app_commands.Choice(name="Auto-Fit V4 (new macro)", value="autofit-v4"),
+        app_commands.Choice(name="Auto-Fit V5 (Reference)", value="autofit-v5"),
         app_commands.Choice(name="Subtle", value="subtle"),
         app_commands.Choice(name="Balanced", value="balanced"),
         app_commands.Choice(name="Stealth", value="stealth"),
@@ -2192,7 +2202,8 @@ async def copyr8_slash(interaction: discord.Interaction,
     global _copyr8_autofit_running, _copyr8_cooldown_until
     if not await _require_trusted(interaction):
         return
-    is_autofit = preset in ("autofit", "autofit-v2", "autofit-v3", "autofit-v4")
+    is_autofit = preset in ("autofit", "autofit-v2", "autofit-v3", "autofit-v4",
+                            "autofit-v5")
 
     # Auto-fit is throttled: only one runs at a time (it contacts Shazam, which
     # rate-limits by device id), and each user is cooled down between runs. The
@@ -2220,7 +2231,7 @@ async def copyr8_slash(interaction: discord.Interaction,
         await interaction.response.send_message(
             f"Unknown preset `{preset}`. Pick one of: "
             + ", ".join(killa_tools.COPYR8_PRESETS)
-            + ", autofit, autofit-v2, autofit-v3, or autofit-v4",
+            + ", autofit, autofit-v2, autofit-v3, autofit-v4, or autofit-v5",
             ephemeral=True)
         return
 
@@ -2268,7 +2279,10 @@ async def copyr8_slash(interaction: discord.Interaction,
         is_v2 = preset == "autofit-v2"
         is_v3 = preset == "autofit-v3"
         is_v4 = preset == "autofit-v4"
-        if is_v4:
+        is_v5 = preset == "autofit-v5"
+        if is_v5:
+            fit_label = "CopyR8 Auto-Fit V5 (Reference)"
+        elif is_v4:
             fit_label = "CopyR8 Auto-Fit V4"
         elif is_v3:
             fit_label = "CopyR8 Auto-Fit V3"
@@ -2277,11 +2291,19 @@ async def copyr8_slash(interaction: discord.Interaction,
         else:
             fit_label = "CopyR8 Auto-Fit"
 
-        if is_v3 or is_v4:
-            # The macro fits are the same engine with different bundled chains;
-            # each reads its own macro path (env-overridable) at dispatch time.
-            macro_path = AUTOFIT_V4_MACRO if is_v4 else AUTOFIT_V3_MACRO
-            fit = killa_tools.copyr8_autofit_v4 if is_v4 else killa_tools.copyr8_autofit_v3
+        if is_v5 or is_v3 or is_v4:
+            # The macro fits are the same engine shape with different bundled
+            # chains; each reads its own macro path (env-overridable) at
+            # dispatch time. V5 additionally ships a measured reference profile.
+            if is_v5:
+                macro_path = AUTOFIT_V5_MACRO
+                fit = killa_tools.copyr8_autofit_v5
+            elif is_v4:
+                macro_path = AUTOFIT_V4_MACRO
+                fit = killa_tools.copyr8_autofit_v4
+            else:
+                macro_path = AUTOFIT_V3_MACRO
+                fit = killa_tools.copyr8_autofit_v3
 
             def fit_fn(i, o, s, p):
                 macro_fn = None
@@ -2329,6 +2351,10 @@ async def copyr8_slash(interaction: discord.Interaction,
                        "and at least one of them identified "
                        "the original. This is a recognition check, not a copyright "
                        "or moderation guarantee.")
+        elif result.get("verified") is False and is_v5:
+            verdict = (f"None of {apis_list} identified the original, so a clean "
+                       "result proves nothing. V5 keeps the reference sound rather "
+                       "than applying a fallback shift, so this export is unverified.")
         elif result.get("verified") is False:
             fallback_label = "slow-tempo fallback" if is_v4 else "balanced protection shift"
             verdict = (f"None of {apis_list} identified the original, "
@@ -2405,23 +2431,47 @@ async def copyr8_slash(interaction: discord.Interaction,
             embed.add_field(name="Codec", value=info.get("codec", "—"), inline=True)
         if info.get("sample_rate"):
             embed.add_field(name="Sample Rate", value=f"{info['sample_rate']} Hz", inline=True)
-        if is_v3 or is_v4:
+        if is_v5:
+            # Reference fidelity is reported separately from recognition: the
+            # target sound is the deliverable, the scan is only a check.
+            ref = result.get("reference") or {}
+            out = ref.get("out") or {}
+            target = ref.get("target") or {}
+            if out.get("crest_db") is not None:
+                match = (f"octave balance {ref.get('band_rmse_db', 0):.1f} dB RMSE, "
+                         f"crest {out['crest_db']:.1f} dB (reference "
+                         f"{target.get('crest_db', 0):.1f})")
+                if out.get("lr_corr") is not None and target.get("lr_corr") is not None:
+                    match += f", width {out['lr_corr']:.2f} (reference {target['lr_corr']:.2f})"
+                embed.add_field(name="Reference Match", value=match, inline=False)
+            chain = result.get("chain") or {}
+            embed.add_field(
+                name="Chain",
+                value=(f"{chain.get('render') or 'reference chain'}; "
+                       f"pitch/tempo unchanged from the reference"
+                       if not result["pitch"] else
+                       f"{chain.get('render') or 'reference chain'}; "
+                       f"{result['pitch']:+.2f} st from the reference"),
+                inline=False)
+        if is_v3 or is_v4 or is_v5:
             macro = result.get("macro") or {}
             if macro.get("applied"):
                 macro_val = (f"configured macro chain ran "
                              f"({len(macro.get('steps') or [])} steps)")
             else:
-                env_hint = "COPYR8_V4_MACRO" if is_v4 else "COPYR8_V3_MACRO"
+                env_hint = ("COPYR8_V5_MACRO" if is_v5 else
+                            "COPYR8_V4_MACRO" if is_v4 else "COPYR8_V3_MACRO")
                 macro_val = macro.get("reason") or f"not configured (set {env_hint})"
             embed.add_field(name="Macro", value=macro_val, inline=False)
         embed.add_field(name="Recognition APIs", value=active_apis, inline=False)
         embed.add_field(name="Result", value=verdict, inline=False)
-        if not (is_v3 or is_v4):
+        if not (is_v3 or is_v4 or is_v5):
             embed.add_field(name="Note",
                             value="CopyR8 is for song checking against the filter.",
                             inline=False)
         embed.set_image(url="attachment://spectrogram.png")
-        _brand_footer(embed, ("copyr8 auto-fit v4" if is_v4 else
+        _brand_footer(embed, ("copyr8 auto-fit v5 reference" if is_v5 else
+                              "copyr8 auto-fit v4" if is_v4 else
                               "copyr8 auto-fit v3" if is_v3 else
                               "copyr8 auto-fit v2" if is_v2 else
                               "copyr8 auto-fit"))
@@ -2440,7 +2490,10 @@ async def copyr8_slash(interaction: discord.Interaction,
                 f"{loud['source_lufs']:.1f})"
                 if loud.get("out_lufs") is not None else "")
              + (f", macro {'ran' if (result.get('macro') or {}).get('applied') else 'not configured'}"
-                if (is_v3 or is_v4) else "")
+                if (is_v3 or is_v4 or is_v5) else "")
+             + (f", reference octave RMSE {result['reference']['band_rmse_db']:.1f} dB"
+                if is_v5 and (result.get("reference") or {}).get("band_rmse_db") is not None
+                else "")
              + (", input was already a processed copy"
                 if already_processed else ""))
         # An interaction token is only good for 15 minutes, and a long V2/V3

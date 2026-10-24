@@ -1,0 +1,33 @@
+{
+  "pre_highpass_hz": 99.6,
+  "pre_highpass_order": 4,
+  "low_shelf_hz": 132.0,
+  "low_shelf_db": 0.0,
+  "pre_emphasis_hz": 3206.0,
+  "pre_emphasis_db": 16.39,
+  "saturation": "atan",
+  "drive_db": 40.0,
+  "de_emphasis_hz": 5274.0,
+  "de_emphasis_db": -4.65,
+  "post_low_shelf_db": 0.0,
+  "post_highpass_hz": 0.0,
+  "leveler_threshold_db": -20.0,
+  "leveler_ratio": 10.0,
+  "leveler_makeup_db": 1.5,
+  "leveler_attack_ms": 10.0,
+  "leveler_release_ms": 400.0,
+  "fit": {
+    "excerpt_s": [
+      20.0,
+      32.0
+    ],
+    "band_rmse_db": 0.97,
+    "crest_db": 2.23,
+    "zcr_ratio": 0.996,
+    "lr_corr": 0.822,
+    "drive_note": "drive 40.0 dB chosen by a full-track sweep: crest 2.61 dB against the reference's 2.63 (the 20-32 s excerpt alone preferred 41.1)",
+    "post_high_shelf_note": "clipping harmonics above 16 kHz were 5-6 dB hotter than the reference (16-20 kHz -11.2 vs -16.7 dB re 1-2 kHz); a 17.5 kHz shelf at -6 dB closes that and takes the crest to 2.61"
+  },
+  "post_high_shelf_hz": 17500.0,
+  "post_high_shelf_db": -6.0
+}
