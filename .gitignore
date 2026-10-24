@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.pytest_cache/
+reports/reference_v5/*.wav
+reports/reference_v5/*.ogg
+reports/reference_v5/*.mp3
