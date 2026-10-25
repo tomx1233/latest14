@@ -310,6 +310,11 @@ reference's 2.63 dB) and the codec inflation is reported separately.
 
 Listed in decreasing order of how likely they are to be heard.
 
+0. **The texture is cleaner than the reference's.** The reference is roughly
+   twice as full between its harmonics (HNR 4.92 vs 7.97 over the whole track),
+   which reads as a "static"/smear on the vocal. This is the largest remaining
+   difference and it is analysed in section 10, including why it could not be
+   closed. Our file will sound less staticky than the reference.
 1. **Loudness range: 1.2 LU vs the reference's 0.7 LU.** The render is levelled,
    but not quite as flat as the reference. The 10-second block span matches
    (0.7 dB vs 0.8 dB), so what remains is within-section micro-dynamics, not
@@ -343,7 +348,7 @@ the levelling is the part of it most likely to be noticed.
 
 ---
 
-## 9. Two bugs this work found in its own earlier version
+## 9. Three bugs this work found in its own earlier version
 
 Recorded because they changed the numbers, and because anyone re-running the fit
 needs to know.
@@ -359,10 +364,113 @@ needs to know.
    tops: a 0.8 dB cut raised the crest from 2.55 dB to 5.35 dB. The residual trim
    therefore runs before the clipper, where the saturator re-flattens the
    overshoot (2.72 dB measured).
+3. **Export level search oscillating.** The loudness target and the true-peak
+   guard can pull in opposite directions. Observed on the textured render:
+   −1.0 LUFS → 1.9 → −0.2, shipping the worst of the three. The export now keeps
+   the closest pass and stops when a correction reverses direction.
 
 ---
 
-## 10. Tests
+---
+
+## 10. The "static" — what the user heard, and how far it can be reproduced
+
+A listening observation was reported that turned out to be **measurable and
+correct**: applying Bass and Treble to the already-processed file made the
+vocals go staticky, in either direction (treble up *or* down, bass up *or*
+down), and never made anything clearer. The reference has that same quality and
+the output does not, by enough to measure.
+
+### 11.1 The metric
+
+Per frame over 16 384 samples, inside 300 Hz–3 kHz:
+
+    HNR = mean(spectral peaks) / median(spectrum)
+
+High HNR = clean harmonics with quiet gaps between them. Low HNR = the gaps are
+filled in. That is what "static" is, acoustically.
+
+| 18–42 s excerpt | HNR | crest | samples ≥ 0.999 |
+|---|---|---|---|
+| TestSong.ogg (source) | 39.6 | 9.57 | 0.0 % |
+| **NewTest.ogg (reference)** | **4.96** | **2.53** | **29.9 %** |
+| V5 output | 8.23 | 2.62 | 0.0 % |
+
+Across the whole track: reference **4.92**, V5 output **7.97**. The reference is
+roughly twice as "full" between its harmonics. This was never in the fit
+objective — the first fit matched the octave curve, crest, L/R and crossing
+density, all of which a clean saturator satisfies — so the gap survived.
+
+### 11.2 Why Bass and Treble makes it worse in both directions
+
+Measured on all three files by applying the effect (Audacity's exact
+coefficients) and then normalising and clipping, as an export would:
+
+| file | pass | ΔHNR | Δcrest |
+|---|---|---|---|
+| reference | treble +6 | **−0.64** | +5.69 |
+| reference | treble −6 | +0.88 | +0.15 |
+| reference | bass +6 | +0.90 | +2.27 |
+| reference | bass −6 | **−0.62** | +4.33 |
+| V5 output | treble +6 | **−1.24** | +1.95 |
+| V5 output | treble −6 | +1.70 | −0.61 |
+| V5 output | bass +6 | +1.74 | +0.41 |
+| V5 output | bass −6 | **−1.19** | +1.98 |
+
+The behaviour is identical on both files, which is why the user heard the same
+thing on theirs: a *boost* puts already-clipped material further into the
+ceiling, and a *cut* unbalances the mix so that the following normalise/clip
+pass must work harder. Either way the crest rises sharply (up to +5.7 dB on the
+reference) and the harmonic gaps fill in. Nothing about that operation can add
+clarity — the information was already destroyed by the clipping. This is also
+why the output cannot be "fixed" by EQ afterwards.
+
+### 11.3 What does and does not reproduce it
+
+Tested against the measured gap (target HNR 4.96 at crest 2.53). Ruled out by
+measurement, each staying at HNR ≥ 6.9:
+
+* repeating the whole chain 2–4 times (HNR 8.9–9.4, crest collapses to 1.3)
+* resampling 44.1 → 32 / 48 / 8 kHz → 44.1 (no change at all)
+* bit-depth reduction to 16 / 12 / 8 bit (crest collapse, no density gain)
+* MP3 at 64–320 kbps, and Vorbis at the reference's own 488 kbps
+* limiter/compressor modulation at 1–200 ms attack, tremolo at 30 Hz
+* detuned doubling at 5–20 cents (raises crest, lowers density)
+* `acrusher` bitcrushing, envelope-gated noise at 10–30 dB SNR
+* harder clipping: 79 % of samples at full scale still gives HNR 8.6
+* more pre-emphasis (up to +28 dB) and drive (up to +48 dB)
+
+What gets close is a **parallel band-limited saturation**: saturate a 1–6 kHz
+copy (`tanh`, +40 dB), mix it back at 0.6, then clip the sum to the reference's
+crest. On the fitted excerpt that reaches **HNR 4.74 at crest 2.33** — the
+reference's own numbers. It is implemented and reproducible:
+`analysis/texture.py`, output `analysis/results/TestSong_v5_reference_static.mp3`.
+
+It does **not** hold over the full track: HNR only reaches 7.10 (from 7.97) and
+the crest rises to 7.14, because the added 1–6 kHz energy needs a −5.9 dB
+correction at 2.7 kHz to restore the octave balance, and that cut takes the new
+density with it. The fitted stage is therefore **not** in the shipped profile.
+It is an opt-in experiment, and this is the honest state of it.
+
+### 11.4 What that implies
+
+The reference's density is spread across the whole spectrum, peaks in the vocal
+band, and costs it nothing in octave balance or crest. Every distortion stage I
+can build adds density *and* band energy together, and correcting the energy
+removes the density. A rendition that was **re-rendered or re-synthesised**
+rather than processed would have exactly this signature — same performance,
+same length, same key, but a denser, less articulated texture — which would
+also explain the flattened dynamics and the missing transient attack.
+
+That is a hypothesis, not a finding, and it is not asserted as fact. What is
+established: no chain of the effects available in Audacity 2.3.3, applied to
+TestSong.ogg, reproduces the reference's inter-harmonic density at its crest
+factor. The closest demonstrated arrangement is documented above with its
+numbers, and it is short of the target on the full track.
+
+---
+
+## 11. Tests
 
 ```
 test_v5_reference.py                                    24 tests  OK  (~153 s)

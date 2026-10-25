@@ -1,0 +1,30 @@
+{
+ "reference": {
+  "hnr": 4.921824881397052,
+  "crest": 2.6305771850681436,
+  "clipped_pct": 27.218423854146312,
+  "octave_rmse": 0.0
+ },
+ "shipped": {
+  "hnr": 7.968390356275475,
+  "crest": 4.9999454679859605,
+  "clipped_pct": 19.98479308761805,
+  "octave_rmse": 0.5950443494209299
+ },
+ "textured": {
+  "hnr": 7.099286497244293,
+  "crest": 7.1362959438724625,
+  "clipped_pct": 21.6830501146477,
+  "octave_rmse": 0.6329296959378663
+ },
+ "texture": {
+  "band": [
+   1000,
+   6000
+  ],
+  "drive_db": 40.0,
+  "wet": 0.6,
+  "clip_drive_db": 10.0,
+  "note": "fitted on 18-42 s: HNR 5.49 vs reference 4.96, crest 2.56 vs 2.53"
+ }
+}

@@ -2395,9 +2395,12 @@ def _v5_export(work_wav, output_path, profile, trim_filter="", progress=None):
     af = (trim_filter + "," if trim_filter else "") + "volume={gain:.2f}dB"
 
     tmp = output_path + ".lvl.mp3"
+    best_tmp = output_path + ".best.mp3"
     total_gain = 0.0
     out_lufs = out_peak = None
     passes = 0
+    best_err = None
+    last_step = None
     for _ in range(V5_LEVEL_PASSES if want_lufs is not None else 1):
         cmd = (_FFMPEG + ["-i", work_wav, "-af", af.format(gain=total_gain)]
                + _CLEAN_MP3_FLAGS + ["-c:a", "libmp3lame", "-b:a", "320k", tmp])
@@ -2415,17 +2418,40 @@ def _v5_export(work_wav, output_path, profile, trim_filter="", progress=None):
             break
         if out_lufs is None:
             break
+        # Keep the closest pass, so a peak guard that fights the loudness
+        # target cannot leave the export on a worse rung than an earlier one
+        # (observed: 1.9 -> -0.2 LUFS when the guard and the target disagreed).
+        err = abs(float(want_lufs) - out_lufs)
+        if best_err is None or err < best_err:
+            best_err = err
+            shutil.copyfile(output_path, best_tmp)
         step = float(want_lufs) - out_lufs
         if (want_peak_dbtp is not None and out_peak is not None
                 and out_peak > float(want_peak_dbtp) + 0.5):
             step -= out_peak - float(want_peak_dbtp)
         if abs(step) <= V5_LEVEL_TOLERANCE:
             break
+        # A correction that reverses direction means the two constraints are
+        # in conflict; stop instead of oscillating.
+        if last_step is not None and step * last_step < 0 and step < 0:
+            break
+        last_step = step
         step = max(-AUTOFIT_MAX_GAIN_DB, min(AUTOFIT_MAX_GAIN_DB, step))
         if progress:
             progress(f"level: {out_lufs:.1f} LUFS against the reference's "
                      f"{float(want_lufs):.1f}, applying {step:+.1f} dB")
         total_gain += step
+    if best_err is not None and want_lufs is not None:
+        try:
+            if abs(float(want_lufs) - (out_lufs if out_lufs is not None else 0.0)) > best_err:
+                os.replace(best_tmp, output_path)
+                out_lufs, out_peak = _loudness(output_path)
+        except Exception:  # noqa: BLE001 - keep the last pass if this fails
+            pass
+    try:
+        os.remove(best_tmp)
+    except OSError:
+        pass
     return {"target_lufs": want_lufs, "out_lufs": out_lufs,
             "out_peak": out_peak, "gain_db": round(total_gain, 2),
             "passes": passes}
