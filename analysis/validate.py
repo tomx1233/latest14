@@ -1,7 +1,7 @@
 """Render TestSong with V5 and measure it against NewTest.ogg.
 
-Produces analysis/out/TestSong_v5_reference.mp3 (the delivered sound),
-analysis/out/compare_*.png figures and analysis/out/summary.json.
+Produces analysis/results/TestSong_v5_reference.mp3 (the delivered sound),
+analysis/results/compare_*.png figures and analysis/results/summary.json.
 """
 import json
 import os

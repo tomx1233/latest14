@@ -4,9 +4,9 @@ __pycache__/
 *.pyc
 
 # Analysis scratch: intermediates are large and regenerable
-analysis/out/*.wav
-analysis/out/*.npy
-analysis/out/*.log
+analysis/results/*.wav
+analysis/results/*.npy
+analysis/results/*.log
 
 # Local media captured while testing
 runtime/
@@ -14,3 +14,4 @@ runtime/
 
 # Intermediate renders
 analysis/iter/
+analysis/results/ref_roundtrip.mp3

@@ -11,7 +11,10 @@ import soundfile as sf
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(HERE, "TestSong.ogg")
 REF = os.path.join(HERE, "NewTest.ogg")
-OUT = os.path.join(HERE, "analysis", "out")
+# NOTE: not "analysis/out" -- this sandbox excludes any directory literally
+# named "out" from workspace snapshots, so the rendered deliverable and the
+# figures would silently disappear between sessions.
+OUT = os.path.join(HERE, "analysis", "results")
 os.makedirs(OUT, exist_ok=True)
 
 

@@ -14,7 +14,7 @@ a project file.
 |---|---|
 | Source | `TestSong.ogg` — 44.1 kHz stereo Vorbis, 149.3346 s |
 | Reference | `NewTest.ogg` — 44.1 kHz stereo Vorbis, 149.3361 s |
-| Delivered sound | `analysis/out/TestSong_v5_reference.mp3` (produced by the shipped V5 path) |
+| Delivered sound | `analysis/results/TestSong_v5_reference.mp3` (produced by the shipped V5 path) |
 | Shipped profile | `macros/autofit_v5_reference.json` |
 | Shipped macro | `macros/CopyR8 AutoFit V5 Reference.txt` |
 
@@ -258,7 +258,7 @@ input → macro (Audacity)  ─┐
 
 ## 7. Validation of the delivered sound
 
-Measured on `analysis/out/TestSong_v5_reference.mp3`, decoded back to 44.1 kHz
+Measured on `analysis/results/TestSong_v5_reference.mp3`, decoded back to 44.1 kHz
 stereo, against `NewTest.ogg`:
 
 ```
@@ -277,11 +277,11 @@ band         ref     out     Δ
 
 Figures (identical analysis settings for both files):
 
-* `analysis/out/compare_spec.png` — 0–16 kHz spectrograms, reference above,
+* `analysis/results/compare_spec.png` — 0–16 kHz spectrograms, reference above,
   render below, same 4096-point window, same colour limits.
-* `analysis/out/compare_wave.png` — peak envelope, 10 ms resolution, all three
+* `analysis/results/compare_wave.png` — peak envelope, 10 ms resolution, all three
   files on the same −60…+8 dB axis.
-* `analysis/out/compare_ltas.png` — long-term average spectra, level-matched at
+* `analysis/results/compare_ltas.png` — long-term average spectra, level-matched at
   200–2000 Hz.
 
 ### 7.1 The one number that looks bad, and why it is the codec
