@@ -1,0 +1,26 @@
+[
+  {
+    "source": "TestSong",
+    "bitrate_kbps": 192,
+    "decoded_peak": 1.8101518154144287,
+    "rms": 0.6503631610970426
+  },
+  {
+    "source": "TestSong",
+    "bitrate_kbps": 320,
+    "decoded_peak": 1.4741952419281006,
+    "rms": 0.6695353192036103
+  },
+  {
+    "source": "newsong2",
+    "bitrate_kbps": 192,
+    "decoded_peak": 1.6272187232971191,
+    "rms": 0.6340831445328293
+  },
+  {
+    "source": "newsong2",
+    "bitrate_kbps": 320,
+    "decoded_peak": 1.5107316970825195,
+    "rms": 0.6530368642354649
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "band_db": [
+    -6.507034822495996,
+    -4.710826096921027,
+    0,
+    6.66033243977682,
+    6.469522814963144
+  ],
+  "drive_db": 8.770502617280785,
+  "output_db": -0.07178757064360816,
+  "compression": 0.05052452873203,
+  "nonlinearity": "tanh",
+  "stereo_mode": "mono_mean",
+  "pitch_semitones": 0.0,
+  "tempo_factor": 1.0,
+  "speed_factor": 1.0
+}

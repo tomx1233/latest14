@@ -3329,3 +3329,26 @@ def download_media(url, out_dir, kind="audio", max_bytes=_DISCORD_MAX_BYTES):
 
     return _finalize_result(title, duration, uploader, norm_url)
 
+
+
+def copyr8_autofit_v5(input_path, output_path, spectrogram_path, progress=None):
+    """Independent fixed-speed reference profile; never enters V1–V4 searches."""
+    from reference_v5.bot import run
+    return run(input_path, output_path, spectrogram_path, progress)
+
+
+def copyfinger_process(input_path, output_path, spectrogram_path, progress=None):
+    """Apply the fitted reference graph once, without recognition or search."""
+    from reference_v5.bot import run
+    return run(input_path, output_path, spectrogram_path, progress, recognize=False)
+
+
+def copyfinger_experimental_process(input_path, output_path, spectrogram_path, progress=None):
+    """Fixed experimental distortion. 65% is a local goal, never a guarantee."""
+    if os.path.splitext(output_path)[1].lower() != '.ogg':
+        raise ValueError('CopyFinger Experimental requires an Ogg output path')
+    from reference_v5.bot import run
+    from reference_v5.target65 import selected_process
+    return run(input_path, output_path, spectrogram_path, progress, recognize=False,
+               processor=selected_process, profile_name='CopyFinger Experimental',
+               delivery_gain_db=-6., ogg_quality=8)
