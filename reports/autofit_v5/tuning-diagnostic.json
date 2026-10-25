@@ -1,0 +1,44 @@
+[
+  {
+    "time": 15,
+    "modal_cents": 15.0,
+    "weight_fraction": 0.36308397134181336,
+    "pairs": 40
+  },
+  {
+    "time": 45,
+    "modal_cents": -30.0,
+    "weight_fraction": 0.5377988204339444,
+    "pairs": 40
+  },
+  {
+    "time": 75,
+    "modal_cents": -20.0,
+    "weight_fraction": 0.19505624701642482,
+    "pairs": 40
+  },
+  {
+    "time": 105,
+    "modal_cents": -30.0,
+    "weight_fraction": 0.3535401597044709,
+    "pairs": 40
+  },
+  {
+    "time": 135,
+    "modal_cents": -30.0,
+    "weight_fraction": 0.48367032587592085,
+    "pairs": 40
+  },
+  {
+    "time": 165,
+    "modal_cents": -35.0,
+    "weight_fraction": 0.2772090279177652,
+    "pairs": 40
+  },
+  {
+    "time": 195,
+    "modal_cents": -30.0,
+    "weight_fraction": 0.48314106971567666,
+    "pairs": 40
+  }
+]

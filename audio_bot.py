@@ -2178,6 +2178,8 @@ bot.tree.add_command(analyze_group)
         app_commands.Choice(name="Auto-Fit V2 (closest)", value="autofit-v2"),
         app_commands.Choice(name="Auto-Fit V3 (macro + mixed)", value="autofit-v3"),
         app_commands.Choice(name="Auto-Fit V4 (new macro)", value="autofit-v4"),
+        app_commands.Choice(name="CopyFinger", value="copyfinger"),
+        app_commands.Choice(name="Auto-Fit V5 (AfterEffects)", value="autofit-v5"),
         app_commands.Choice(name="Subtle", value="subtle"),
         app_commands.Choice(name="Balanced", value="balanced"),
         app_commands.Choice(name="Stealth", value="stealth"),
@@ -2192,7 +2194,7 @@ async def copyr8_slash(interaction: discord.Interaction,
     global _copyr8_autofit_running, _copyr8_cooldown_until
     if not await _require_trusted(interaction):
         return
-    is_autofit = preset in ("autofit", "autofit-v2", "autofit-v3", "autofit-v4")
+    is_autofit = preset in ("autofit", "autofit-v2", "autofit-v3", "autofit-v4", "autofit-v5")
 
     # Auto-fit is throttled: only one runs at a time (it contacts Shazam, which
     # rate-limits by device id), and each user is cooled down between runs. The
@@ -2216,10 +2218,10 @@ async def copyr8_slash(interaction: discord.Interaction,
                 f"{'' if remain == 1 else 's'}**.", ephemeral=True)
             return
         _copyr8_autofit_running = True
-    elif preset not in killa_tools.COPYR8_PRESETS:
+    elif preset != "copyfinger" and preset not in killa_tools.COPYR8_PRESETS:
         await interaction.response.send_message(
             f"Unknown preset `{preset}`. Pick one of: "
-            + ", ".join(killa_tools.COPYR8_PRESETS)
+            + ", ".join(killa_tools.COPYR8_PRESETS) + ", copyfinger"
             + ", autofit, autofit-v2, autofit-v3, or autofit-v4",
             ephemeral=True)
         return
@@ -2248,14 +2250,25 @@ async def copyr8_slash(interaction: discord.Interaction,
         if not is_autofit:
             # The four fixed shift presets: a straight key/speed re-encode, no
             # recogniser loop -- extras for when a known setting is wanted.
-            info = await asyncio.to_thread(
-                killa_tools.copyr8_process, input_path, output_path, spec_path, preset)
-            semi, tempo = killa_tools.COPYR8_PRESETS[preset]
+            if preset == "copyfinger":
+                result = await asyncio.to_thread(
+                    killa_tools.copyfinger_process, input_path, output_path, spec_path)
+                info = result["info"]
+                copyr8_name = f"{base_stem}_CopyFinger.mp3"
+                preset_note = ("Reference-fitted EQ, linked dynamics and saturation, applied once. "
+                               "Pitch 0.00 st; tempo 1.00x; speed 1.00x. "
+                               "No recognition checks or search. Fingerprint changes are not guaranteed. "
+                               "Delivery uses 1.5 dB fixed headroom.")
+            else:
+                info = await asyncio.to_thread(
+                    killa_tools.copyr8_process, input_path, output_path, spec_path, preset)
+                semi, tempo = killa_tools.COPYR8_PRESETS[preset]
+                preset_note = f"Shifted by {semi:+.1f} st, tempo {tempo:.2f}x ({preset} preset)."
             embed = _audio_embed(
-                f"Preset Applied — {preset}",
+                f"Preset Applied — {'CopyFinger' if preset == 'copyfinger' else preset}",
                 copyr8_name,
                 info,
-                note=f"Shifted by {semi:+.1f} st, tempo {tempo:.2f}x ({preset} preset).",
+                note=preset_note,
                 image="spectrogram.png",
                 tag="copyr8 preset",
             )
@@ -2268,7 +2281,10 @@ async def copyr8_slash(interaction: discord.Interaction,
         is_v2 = preset == "autofit-v2"
         is_v3 = preset == "autofit-v3"
         is_v4 = preset == "autofit-v4"
-        if is_v4:
+        is_v5 = preset == "autofit-v5"
+        if is_v5:
+            fit_label = "CopyR8 Auto-Fit V5 (AfterEffects)"
+        elif is_v4:
             fit_label = "CopyR8 Auto-Fit V4"
         elif is_v3:
             fit_label = "CopyR8 Auto-Fit V3"
@@ -2277,7 +2293,11 @@ async def copyr8_slash(interaction: discord.Interaction,
         else:
             fit_label = "CopyR8 Auto-Fit"
 
-        if is_v3 or is_v4:
+        if is_v5:
+            output_path = os.path.join(workdir, "autofit_v5.ogg")
+            copyr8_name = f"{base_stem}_AutoFitV5.ogg"
+            fit_fn = killa_tools.copyr8_autofit_v5
+        elif is_v3 or is_v4:
             # The macro fits are the same engine with different bundled chains;
             # each reads its own macro path (env-overridable) at dispatch time.
             macro_path = AUTOFIT_V4_MACRO if is_v4 else AUTOFIT_V3_MACRO
@@ -2321,7 +2341,14 @@ async def copyr8_slash(interaction: discord.Interaction,
         # its sweep against the untouched original, because a soft-throttled
         # server answers with an empty match list and that reads exactly like
         # a genuine miss. Say which of the two this run got.
-        if not result["clean"]:
+        if is_v5:
+            verdict = ("Fixed-speed reference processing: 0.00 st / tempo 1.00x / speed 1.00x. "
+                       + ("No matches verified against an original-file control."
+                          if result["clean"] and result.get("verified") is True else
+                          "Recognition was not verified; no pitch/speed fallback was applied.")
+                       + " AfterEffects-fitted EQ/dynamics/stereo; no reference timing or tuning changes copied. "
+                       "Ogg delivery is attenuated 1.5 dB; no source-loudness matching.")
+        elif not result["clean"]:
             verdict = (f"No candidate passed {apis_list}. This file "
                        "is a best effort, not a confirmed no-match result.")
         elif result.get("verified") is True:
@@ -2344,7 +2371,7 @@ async def copyr8_slash(interaction: discord.Interaction,
                         + ("\n\nThis file was already a processed copy, so this pass "
                            "stacks a second shift on top of the first. Run it on the "
                            "original track for a single pass."
-                           if already_processed else ""),
+                           if already_processed and not is_v5 else ""),
             color=PURPLE,
         )
         info = result.get("info") or {}
@@ -2421,7 +2448,8 @@ async def copyr8_slash(interaction: discord.Interaction,
                             value="CopyR8 is for song checking against the filter.",
                             inline=False)
         embed.set_image(url="attachment://spectrogram.png")
-        _brand_footer(embed, ("copyr8 auto-fit v4" if is_v4 else
+        _brand_footer(embed, ("copyr8 auto-fit v5 reference" if is_v5 else
+                              "copyr8 auto-fit v4" if is_v4 else
                               "copyr8 auto-fit v3" if is_v3 else
                               "copyr8 auto-fit v2" if is_v2 else
                               "copyr8 auto-fit"))

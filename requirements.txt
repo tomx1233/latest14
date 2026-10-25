@@ -23,3 +23,8 @@ pyacoustid>=1.3
 # Needs the standalone yt-dlp CLI on PATH (`winget install yt-dlp.yt-dlp`), not
 # a pip module. ffmpeg/ffprobe must also be on PATH for /analyze, /copyr8,
 # /roblox, /shazam (and the /copyr8 spectrogram).
+
+# Independent Auto-Fit V5 Reference DSP (no Audacity dependency)
+scipy>=1.10
+# Optional: reproduce reference analysis plots
+matplotlib>=3.7

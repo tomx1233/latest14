@@ -2378,13 +2378,17 @@ def _cookies_args():
     return args
 
 
+def _download_error_is_drm(err):
+    return any(k in (err or "").lower() for k in ("drm", "widevine", "playready", "fairplay"))
+
+
 def _err_hint(err):
     """Turn a raw yt-dlp error blob into a short, honest explanation."""
     e = err or ""
     el = e.lower()
     if any(k in el for k in ("drm", "widevine", "playready", "fairplay")):
-        return ("That source is DRM-protected content (Widevine/PlayReady). "
-                "yt-dlp does not decrypt DRM.")
+        return ("The source reports DRM protection; yt-dlp cannot decrypt it. "
+                "Use a creator-enabled download or another authorized non-DRM source.")
     if any(k in el for k in ("sign in", "login required", "auth required", "cookies",
                              "cookie", "401", "403", "not authorized")):
         return ("The site is holding the file behind a login/region session. Set "
@@ -3085,8 +3089,11 @@ def download_media(url, out_dir, kind="audio", max_bytes=_DISCORD_MAX_BYTES):
             "note": note.strip(),
         }
 
+    downloaded_source_url = None
+
     def _download_verified_candidates(candidates, exp_dur):
         """Download the first verified candidate whose actual file passes duration checks."""
+        nonlocal downloaded_source_url
         max_tol = 12.0 if kind == "audio" else 20.0
         for cand in candidates:
             _clear_partial_downloads(out_dir)
@@ -3122,6 +3129,7 @@ def download_media(url, out_dir, kind="audio", max_bytes=_DISCORD_MAX_BYTES):
                 if exp_dur and float(exp_dur) > 0 and abs(got_dur - float(exp_dur)) > max_tol:
                     _clear_partial_downloads(out_dir)
                     continue
+            downloaded_source_url = cand["url"]
             return out_file, (got_dur or cand.get("duration") or exp_dur)
         _clear_partial_downloads(out_dir)
         return None, None
@@ -3186,14 +3194,25 @@ def download_media(url, out_dir, kind="audio", max_bytes=_DISCORD_MAX_BYTES):
             sc_base + ["--skip-download", "--print", "%(title)s\t%(duration)s\t%(uploader)s", norm_url],
             timeout=60,
         )
-        if rc != 0:
+        drm_error = err if rc != 0 and _download_error_is_drm(err) else ""
+        metadata_only = bool(drm_error)
+        if rc != 0 and not drm_error:
             rc, out, err = _run_yt(
                 sc_base + relaxed + ["--skip-download", "--print", "%(title)s\t%(duration)s\t%(uploader)s", norm_url],
                 timeout=60,
             )
+        if rc != 0 and _download_error_is_drm(err):
+            drm_error = err
+            metadata_only = True
+            # Public metadata only, never --allow-unplayable-formats or decryption.
+            rc, out, _meta_err = _run_yt(
+                sc_base + ["--ignore-no-formats-error", "--skip-download", "--print",
+                           "%(title)s\t%(duration)s\t%(uploader)s", norm_url], timeout=60)
         first_line = (out.strip().splitlines() or [""])[0]
         parts = (first_line.split("\t") + ["", "", ""])[:3]
         title, duration, uploader = parts[0].strip(), parts[1].strip(), parts[2].strip()
+        title = "" if title.upper() in {"", "NA", "NONE", "NULL"} else title
+        uploader = "" if uploader.upper() in {"", "NA", "NONE", "NULL"} else uploader
         exp_sc_dur = None
         try:
             if duration and duration.upper() != "NA":
@@ -3201,7 +3220,7 @@ def download_media(url, out_dir, kind="audio", max_bytes=_DISCORD_MAX_BYTES):
         except (TypeError, ValueError):
             exp_sc_dur = None
 
-        if rc == 0:
+        if rc == 0 and not metadata_only:
             _clear_partial_downloads(out_dir)
             if kind == "audio":
                 dl = sc_base + [
@@ -3215,8 +3234,10 @@ def download_media(url, out_dir, kind="audio", max_bytes=_DISCORD_MAX_BYTES):
                     "--merge-output-format", "mp4", "-o", out_tmpl, norm_url,
                 ]
             dl_rc, _dl_out, dl_err = _run_yt(dl, timeout=240)
-            if dl_rc != 0:
+            if dl_rc != 0 and not _download_error_is_drm(dl_err):
                 dl_rc, _dl_out, dl_err = _run_yt(dl + relaxed, timeout=240)
+            if _download_error_is_drm(dl_err):
+                drm_error = dl_err
             err = dl_err or err
             if dl_rc == 0:
                 out_file = _find_output(out_dir)
@@ -3245,7 +3266,8 @@ def download_media(url, out_dir, kind="audio", max_bytes=_DISCORD_MAX_BYTES):
                         cands = [c for c in cands if (c.get("duration") or 0) >= 45]
                     matched_file, actual_dur = _download_verified_candidates(cands, target_dur)
                     if matched_file and os.path.isfile(matched_file):
-                        return _finalize_result(title, actual_dur, uploader, norm_url)
+                        return _finalize_result(title, actual_dur, uploader, downloaded_source_url or norm_url,
+                            note="Used a metadata-verified alternate source, not the SoundCloud stream.")
                 raise RuntimeError(
                     f"SoundCloud only provided a 30-second preview for '{title or 'this track'}', "
                     "and no verified full match could be confirmed. Download cancelled."
@@ -3260,9 +3282,15 @@ def download_media(url, out_dir, kind="audio", max_bytes=_DISCORD_MAX_BYTES):
             )
             matched_file, actual_dur = _download_verified_candidates(cands, exp_sc_dur)
             if matched_file and os.path.isfile(matched_file):
-                return _finalize_result(title, actual_dur or exp_sc_dur, uploader, norm_url)
+                return _finalize_result(title, actual_dur or exp_sc_dur, uploader, downloaded_source_url or norm_url,
+                    note="Used a metadata-verified alternate source; DRM was not decrypted.")
 
         _clear_partial_downloads(out_dir)
+        if drm_error:
+            raise RuntimeError(
+                "SoundCloud reports DRM protection for this track. No unprotected full download "
+                "or metadata-verified alternate source was available. Use the creator's enabled "
+                "download or another authorized non-DRM source. DRM was not decrypted.")
         hint = _err_hint(err)
         raise RuntimeError(
             "Could not download a verified full copy of that SoundCloud track."
@@ -3329,3 +3357,26 @@ def download_media(url, out_dir, kind="audio", max_bytes=_DISCORD_MAX_BYTES):
 
     return _finalize_result(title, duration, uploader, norm_url)
 
+
+
+def copyr8_autofit_v5(input_path, output_path, spectrogram_path, progress=None):
+    """Independent fixed-speed reference profile; never enters V1–V4 searches."""
+    from reference_v5.aftereffects import run
+    return run(input_path, output_path, spectrogram_path, progress)
+
+
+def copyfinger_process(input_path, output_path, spectrogram_path, progress=None):
+    """Apply the fitted reference graph once, without recognition or search."""
+    from reference_v5.bot import run
+    return run(input_path, output_path, spectrogram_path, progress, recognize=False)
+
+
+def copyfinger_experimental_process(input_path, output_path, spectrogram_path, progress=None):
+    """Fixed experimental distortion. 65% is a local goal, never a guarantee."""
+    if os.path.splitext(output_path)[1].lower() != '.ogg':
+        raise ValueError('CopyFinger Experimental requires an Ogg output path')
+    from reference_v5.bot import run
+    from reference_v5.target65 import selected_process
+    return run(input_path, output_path, spectrogram_path, progress, recognize=False,
+               processor=selected_process, profile_name='CopyFinger Experimental',
+               delivery_gain_db=-6., ogg_quality=8)

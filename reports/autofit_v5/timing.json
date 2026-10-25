@@ -1,0 +1,128 @@
+[
+  {
+    "band": 0,
+    "time": 15,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.8170557958319811
+  },
+  {
+    "band": 0,
+    "time": 45,
+    "lag_seconds": -0.3,
+    "normalized_correlation": 0.9580229934897392
+  },
+  {
+    "band": 0,
+    "time": 75,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.9640982397555055
+  },
+  {
+    "band": 0,
+    "time": 105,
+    "lag_seconds": -0.3,
+    "normalized_correlation": 0.7826779082619253
+  },
+  {
+    "band": 0,
+    "time": 135,
+    "lag_seconds": -0.3,
+    "normalized_correlation": 0.7786993443259683
+  },
+  {
+    "band": 0,
+    "time": 165,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.9696268242703142
+  },
+  {
+    "band": 0,
+    "time": 195,
+    "lag_seconds": -0.3,
+    "normalized_correlation": 0.9820500771627669
+  },
+  {
+    "band": 1,
+    "time": 15,
+    "lag_seconds": -0.3,
+    "normalized_correlation": 0.877806966839478
+  },
+  {
+    "band": 1,
+    "time": 45,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.8085131405200897
+  },
+  {
+    "band": 1,
+    "time": 75,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.9532532435210324
+  },
+  {
+    "band": 1,
+    "time": 105,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.8217593860094756
+  },
+  {
+    "band": 1,
+    "time": 135,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.8963705432642396
+  },
+  {
+    "band": 1,
+    "time": 165,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.9365703808179945
+  },
+  {
+    "band": 1,
+    "time": 195,
+    "lag_seconds": -0.3,
+    "normalized_correlation": 0.7618798527454113
+  },
+  {
+    "band": 2,
+    "time": 15,
+    "lag_seconds": -0.3,
+    "normalized_correlation": 0.9183931390161344
+  },
+  {
+    "band": 2,
+    "time": 45,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.8420228320978069
+  },
+  {
+    "band": 2,
+    "time": 75,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.981729011568193
+  },
+  {
+    "band": 2,
+    "time": 105,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.7493261285869609
+  },
+  {
+    "band": 2,
+    "time": 135,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.8883217124457962
+  },
+  {
+    "band": 2,
+    "time": 165,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.9518770484895288
+  },
+  {
+    "band": 2,
+    "time": 195,
+    "lag_seconds": -0.28,
+    "normalized_correlation": 0.9115127151004347
+  }
+]
