@@ -1,0 +1,3138 @@
+{
+  "selection_reason": "Fixed seven-stage profile: less extreme than tested ten-stage/telephone alternatives; no runtime selection",
+  "target": 0.65,
+  "comparator_sha256": "64ca6f38a1c4c0525a1fca1319456351fc5dca04d6df45477157aee9fd98ad04",
+  "candidates": [
+    {
+      "name": "dense-quantized",
+      "settings": {
+        "low": 60,
+        "high": 16000,
+        "levels": 3,
+        "stages": 1
+      },
+      "comparison": {
+        "method": "CopyFinger LocalPrint v1",
+        "alignment": "zero lag; no search, pitch rotation or time warp",
+        "fingerprint_sha256_equal": false,
+        "original_fingerprint_sha256": "6ccde2787c05069d4b826d02edbcedc8ef7ed5d719cb3af4d348ebc5e04df664",
+        "converted_fingerprint_sha256": "9a9ce3d2602be912af4851fe5bc8dcfda9128302407b7c17b4eb5782da1b75dd",
+        "duration_difference_seconds": 0.0,
+        "original_frames": 5175,
+        "converted_frames": 5175,
+        "frame_step_seconds": 0.046439909297052155,
+        "shared_timeline_seconds": 240.3265306122449,
+        "whole_overlap": {
+          "status": "measured",
+          "comparable_frames": 5162,
+          "compared_bits": 98717,
+          "temporal_bit_agreement": 0.7761581085324716,
+          "fixed_key_chroma_cosine": 0.9368388602174567
+        },
+        "windows": [
+          {
+            "start_seconds": 0.0,
+            "end_seconds": 11.981496598639456,
+            "status": "measured",
+            "comparable_frames": 255,
+            "compared_bits": 4885,
+            "temporal_bit_agreement": 0.7656090071647902,
+            "fixed_key_chroma_cosine": 0.9100347009056892
+          },
+          {
+            "start_seconds": 5.990748299319728,
+            "end_seconds": 17.972244897959182,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4960,
+            "temporal_bit_agreement": 0.7657258064516129,
+            "fixed_key_chroma_cosine": 0.9084054345157149
+          },
+          {
+            "start_seconds": 11.981496598639456,
+            "end_seconds": 23.962993197278912,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4923,
+            "temporal_bit_agreement": 0.7806215722120659,
+            "fixed_key_chroma_cosine": 0.92275323331609
+          },
+          {
+            "start_seconds": 17.972244897959182,
+            "end_seconds": 29.95374149659864,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4986,
+            "temporal_bit_agreement": 0.7988367428800642,
+            "fixed_key_chroma_cosine": 0.9349409843751025
+          },
+          {
+            "start_seconds": 23.962993197278912,
+            "end_seconds": 35.944489795918365,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4985,
+            "temporal_bit_agreement": 0.8044132397191575,
+            "fixed_key_chroma_cosine": 0.934089006391068
+          },
+          {
+            "start_seconds": 29.95374149659864,
+            "end_seconds": 41.9352380952381,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4898,
+            "temporal_bit_agreement": 0.7980808493262556,
+            "fixed_key_chroma_cosine": 0.9360742840480386
+          },
+          {
+            "start_seconds": 35.944489795918365,
+            "end_seconds": 47.925986394557825,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4875,
+            "temporal_bit_agreement": 0.7798974358974359,
+            "fixed_key_chroma_cosine": 0.9422349527720202
+          },
+          {
+            "start_seconds": 41.9352380952381,
+            "end_seconds": 53.91673469387755,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4933,
+            "temporal_bit_agreement": 0.7881613622542064,
+            "fixed_key_chroma_cosine": 0.943402377480688
+          },
+          {
+            "start_seconds": 47.925986394557825,
+            "end_seconds": 59.90748299319728,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4939,
+            "temporal_bit_agreement": 0.8027940878720389,
+            "fixed_key_chroma_cosine": 0.9357704959476519
+          },
+          {
+            "start_seconds": 53.91673469387755,
+            "end_seconds": 65.89823129251701,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4938,
+            "temporal_bit_agreement": 0.7802754151478332,
+            "fixed_key_chroma_cosine": 0.9369734577123272
+          },
+          {
+            "start_seconds": 59.90748299319728,
+            "end_seconds": 71.88897959183673,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4948,
+            "temporal_bit_agreement": 0.7663702506063056,
+            "fixed_key_chroma_cosine": 0.9430591787861059
+          },
+          {
+            "start_seconds": 65.89823129251701,
+            "end_seconds": 77.87972789115646,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5022,
+            "temporal_bit_agreement": 0.7602548785344484,
+            "fixed_key_chroma_cosine": 0.9417456191453077
+          },
+          {
+            "start_seconds": 71.88897959183673,
+            "end_seconds": 83.8704761904762,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5006,
+            "temporal_bit_agreement": 0.743108270075909,
+            "fixed_key_chroma_cosine": 0.9341581229935509
+          },
+          {
+            "start_seconds": 77.87972789115646,
+            "end_seconds": 89.86122448979592,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5031,
+            "temporal_bit_agreement": 0.7286821705426356,
+            "fixed_key_chroma_cosine": 0.9362130723647047
+          },
+          {
+            "start_seconds": 83.8704761904762,
+            "end_seconds": 95.85197278911565,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5060,
+            "temporal_bit_agreement": 0.7533596837944664,
+            "fixed_key_chroma_cosine": 0.9434468597098347
+          },
+          {
+            "start_seconds": 89.86122448979592,
+            "end_seconds": 101.84272108843537,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4901,
+            "temporal_bit_agreement": 0.7829014486839421,
+            "fixed_key_chroma_cosine": 0.9377616028175567
+          },
+          {
+            "start_seconds": 95.85197278911565,
+            "end_seconds": 107.8334693877551,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4881,
+            "temporal_bit_agreement": 0.7641876664617906,
+            "fixed_key_chroma_cosine": 0.9372678228143971
+          },
+          {
+            "start_seconds": 101.84272108843537,
+            "end_seconds": 113.82421768707484,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4876,
+            "temporal_bit_agreement": 0.7471287940935193,
+            "fixed_key_chroma_cosine": 0.9341228516604724
+          },
+          {
+            "start_seconds": 107.8334693877551,
+            "end_seconds": 119.81496598639455,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4876,
+            "temporal_bit_agreement": 0.7664068908941756,
+            "fixed_key_chroma_cosine": 0.939069927088418
+          },
+          {
+            "start_seconds": 113.82421768707484,
+            "end_seconds": 125.80571428571429,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4998,
+            "temporal_bit_agreement": 0.7843137254901961,
+            "fixed_key_chroma_cosine": 0.9448731565587835
+          },
+          {
+            "start_seconds": 119.81496598639455,
+            "end_seconds": 131.79646258503402,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5009,
+            "temporal_bit_agreement": 0.7887801956478339,
+            "fixed_key_chroma_cosine": 0.9406186037783493
+          },
+          {
+            "start_seconds": 125.80571428571429,
+            "end_seconds": 137.78721088435375,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4958,
+            "temporal_bit_agreement": 0.8043565954013715,
+            "fixed_key_chroma_cosine": 0.9417367970724279
+          },
+          {
+            "start_seconds": 131.79646258503402,
+            "end_seconds": 143.77795918367346,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5022,
+            "temporal_bit_agreement": 0.7881322182397451,
+            "fixed_key_chroma_cosine": 0.944642321858805
+          },
+          {
+            "start_seconds": 137.78721088435375,
+            "end_seconds": 149.7687074829932,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5085,
+            "temporal_bit_agreement": 0.7710914454277286,
+            "fixed_key_chroma_cosine": 0.9493864776411475
+          },
+          {
+            "start_seconds": 143.77795918367346,
+            "end_seconds": 155.75945578231293,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5087,
+            "temporal_bit_agreement": 0.7900530764694319,
+            "fixed_key_chroma_cosine": 0.9525827632663056
+          },
+          {
+            "start_seconds": 149.7687074829932,
+            "end_seconds": 161.75020408163266,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5046,
+            "temporal_bit_agreement": 0.8069758224336108,
+            "fixed_key_chroma_cosine": 0.9560059917766881
+          },
+          {
+            "start_seconds": 155.75945578231293,
+            "end_seconds": 167.7409523809524,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5026,
+            "temporal_bit_agreement": 0.8089932351770792,
+            "fixed_key_chroma_cosine": 0.9485737892996675
+          },
+          {
+            "start_seconds": 161.75020408163266,
+            "end_seconds": 173.7317006802721,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5000,
+            "temporal_bit_agreement": 0.8104,
+            "fixed_key_chroma_cosine": 0.9337766689861812
+          },
+          {
+            "start_seconds": 167.7409523809524,
+            "end_seconds": 179.72244897959183,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4871,
+            "temporal_bit_agreement": 0.7940874563744611,
+            "fixed_key_chroma_cosine": 0.9368786991705749
+          },
+          {
+            "start_seconds": 173.7317006802721,
+            "end_seconds": 185.71319727891157,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4826,
+            "temporal_bit_agreement": 0.7820140903439702,
+            "fixed_key_chroma_cosine": 0.9450602756112819
+          },
+          {
+            "start_seconds": 179.72244897959183,
+            "end_seconds": 191.7039455782313,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4924,
+            "temporal_bit_agreement": 0.7818846466287571,
+            "fixed_key_chroma_cosine": 0.944386828869982
+          },
+          {
+            "start_seconds": 185.71319727891157,
+            "end_seconds": 197.69469387755103,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4932,
+            "temporal_bit_agreement": 0.790551500405515,
+            "fixed_key_chroma_cosine": 0.9362107539071828
+          },
+          {
+            "start_seconds": 191.7039455782313,
+            "end_seconds": 203.68544217687074,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4899,
+            "temporal_bit_agreement": 0.789548887528067,
+            "fixed_key_chroma_cosine": 0.9363150493014074
+          },
+          {
+            "start_seconds": 197.69469387755103,
+            "end_seconds": 209.67619047619047,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4948,
+            "temporal_bit_agreement": 0.7625303152789006,
+            "fixed_key_chroma_cosine": 0.9382225222081614
+          },
+          {
+            "start_seconds": 203.68544217687074,
+            "end_seconds": 215.6669387755102,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4939,
+            "temporal_bit_agreement": 0.7471148005669164,
+            "fixed_key_chroma_cosine": 0.9364193052498675
+          },
+          {
+            "start_seconds": 209.67619047619047,
+            "end_seconds": 221.65768707482994,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4836,
+            "temporal_bit_agreement": 0.7477253928866832,
+            "fixed_key_chroma_cosine": 0.9390100798807258
+          },
+          {
+            "start_seconds": 215.6669387755102,
+            "end_seconds": 227.64843537414967,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4706,
+            "temporal_bit_agreement": 0.7671058223544411,
+            "fixed_key_chroma_cosine": 0.9320200589589767
+          },
+          {
+            "start_seconds": 221.65768707482994,
+            "end_seconds": 233.63918367346938,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4678,
+            "temporal_bit_agreement": 0.7663531423685336,
+            "fixed_key_chroma_cosine": 0.9225284586112142
+          },
+          {
+            "start_seconds": 227.64843537414967,
+            "end_seconds": 239.6299319727891,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4760,
+            "temporal_bit_agreement": 0.7394957983193278,
+            "fixed_key_chroma_cosine": 0.9213280902357881
+          },
+          {
+            "start_seconds": 228.34503401360544,
+            "end_seconds": 240.3265306122449,
+            "status": "measured",
+            "comparable_frames": 248,
+            "compared_bits": 4600,
+            "temporal_bit_agreement": 0.7369565217391304,
+            "fixed_key_chroma_cosine": 0.9213214397560265
+          }
+        ],
+        "recognition_verdict": "not_available: local diagnostics are not an API match test"
+      }
+    },
+    {
+      "name": "midrange",
+      "settings": {
+        "low": 250,
+        "high": 4500,
+        "levels": 7,
+        "stages": 1
+      },
+      "comparison": {
+        "method": "CopyFinger LocalPrint v1",
+        "alignment": "zero lag; no search, pitch rotation or time warp",
+        "fingerprint_sha256_equal": false,
+        "original_fingerprint_sha256": "6ccde2787c05069d4b826d02edbcedc8ef7ed5d719cb3af4d348ebc5e04df664",
+        "converted_fingerprint_sha256": "4c7fe7bb3b998916d39b3d4ba95ae084bc048a12ffb07661f5fd164537ff7b29",
+        "duration_difference_seconds": 0.0,
+        "original_frames": 5175,
+        "converted_frames": 5175,
+        "frame_step_seconds": 0.046439909297052155,
+        "shared_timeline_seconds": 240.3265306122449,
+        "whole_overlap": {
+          "status": "measured",
+          "comparable_frames": 5162,
+          "compared_bits": 98379,
+          "temporal_bit_agreement": 0.7560251679728397,
+          "fixed_key_chroma_cosine": 0.9181773240331549
+        },
+        "windows": [
+          {
+            "start_seconds": 0.0,
+            "end_seconds": 11.981496598639456,
+            "status": "measured",
+            "comparable_frames": 255,
+            "compared_bits": 4870,
+            "temporal_bit_agreement": 0.7392197125256673,
+            "fixed_key_chroma_cosine": 0.8746589872682107
+          },
+          {
+            "start_seconds": 5.990748299319728,
+            "end_seconds": 17.972244897959182,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4898,
+            "temporal_bit_agreement": 0.7560228664761127,
+            "fixed_key_chroma_cosine": 0.8801013955552793
+          },
+          {
+            "start_seconds": 11.981496598639456,
+            "end_seconds": 23.962993197278912,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4847,
+            "temporal_bit_agreement": 0.771611305962451,
+            "fixed_key_chroma_cosine": 0.9066579741957966
+          },
+          {
+            "start_seconds": 17.972244897959182,
+            "end_seconds": 29.95374149659864,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4926,
+            "temporal_bit_agreement": 0.7775071051563135,
+            "fixed_key_chroma_cosine": 0.9173633783431425
+          },
+          {
+            "start_seconds": 23.962993197278912,
+            "end_seconds": 35.944489795918365,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4935,
+            "temporal_bit_agreement": 0.7777102330293819,
+            "fixed_key_chroma_cosine": 0.9139453463573775
+          },
+          {
+            "start_seconds": 29.95374149659864,
+            "end_seconds": 41.9352380952381,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4894,
+            "temporal_bit_agreement": 0.7711483449121374,
+            "fixed_key_chroma_cosine": 0.9150083348710335
+          },
+          {
+            "start_seconds": 35.944489795918365,
+            "end_seconds": 47.925986394557825,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4921,
+            "temporal_bit_agreement": 0.7581792318634424,
+            "fixed_key_chroma_cosine": 0.9157165416763294
+          },
+          {
+            "start_seconds": 41.9352380952381,
+            "end_seconds": 53.91673469387755,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4938,
+            "temporal_bit_agreement": 0.7671121911705143,
+            "fixed_key_chroma_cosine": 0.9196863773839383
+          },
+          {
+            "start_seconds": 47.925986394557825,
+            "end_seconds": 59.90748299319728,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4904,
+            "temporal_bit_agreement": 0.7756933115823818,
+            "fixed_key_chroma_cosine": 0.9158506708945473
+          },
+          {
+            "start_seconds": 53.91673469387755,
+            "end_seconds": 65.89823129251701,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4887,
+            "temporal_bit_agreement": 0.7616124411704522,
+            "fixed_key_chroma_cosine": 0.9163087767050888
+          },
+          {
+            "start_seconds": 59.90748299319728,
+            "end_seconds": 71.88897959183673,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4917,
+            "temporal_bit_agreement": 0.7520846044335977,
+            "fixed_key_chroma_cosine": 0.9226767366901265
+          },
+          {
+            "start_seconds": 65.89823129251701,
+            "end_seconds": 77.87972789115646,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5030,
+            "temporal_bit_agreement": 0.7441351888667992,
+            "fixed_key_chroma_cosine": 0.9282399890473634
+          },
+          {
+            "start_seconds": 71.88897959183673,
+            "end_seconds": 83.8704761904762,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5029,
+            "temporal_bit_agreement": 0.7281765758600119,
+            "fixed_key_chroma_cosine": 0.923009380680316
+          },
+          {
+            "start_seconds": 77.87972789115646,
+            "end_seconds": 89.86122448979592,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5036,
+            "temporal_bit_agreement": 0.7120730738681493,
+            "fixed_key_chroma_cosine": 0.9264815131803669
+          },
+          {
+            "start_seconds": 83.8704761904762,
+            "end_seconds": 95.85197278911565,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5048,
+            "temporal_bit_agreement": 0.7303882725832013,
+            "fixed_key_chroma_cosine": 0.9324824099485757
+          },
+          {
+            "start_seconds": 89.86122448979592,
+            "end_seconds": 101.84272108843537,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4924,
+            "temporal_bit_agreement": 0.7579203899268887,
+            "fixed_key_chroma_cosine": 0.9169274764979721
+          },
+          {
+            "start_seconds": 95.85197278911565,
+            "end_seconds": 107.8334693877551,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4873,
+            "temporal_bit_agreement": 0.7500513030987072,
+            "fixed_key_chroma_cosine": 0.912589776926174
+          },
+          {
+            "start_seconds": 101.84272108843537,
+            "end_seconds": 113.82421768707484,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4819,
+            "temporal_bit_agreement": 0.7323096078024487,
+            "fixed_key_chroma_cosine": 0.9068796852189523
+          },
+          {
+            "start_seconds": 107.8334693877551,
+            "end_seconds": 119.81496598639455,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4817,
+            "temporal_bit_agreement": 0.7380112102968652,
+            "fixed_key_chroma_cosine": 0.9169506206379509
+          },
+          {
+            "start_seconds": 113.82421768707484,
+            "end_seconds": 125.80571428571429,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4982,
+            "temporal_bit_agreement": 0.7529104777197912,
+            "fixed_key_chroma_cosine": 0.9270535877745942
+          },
+          {
+            "start_seconds": 119.81496598639455,
+            "end_seconds": 131.79646258503402,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5006,
+            "temporal_bit_agreement": 0.76887734718338,
+            "fixed_key_chroma_cosine": 0.919726881693756
+          },
+          {
+            "start_seconds": 125.80571428571429,
+            "end_seconds": 137.78721088435375,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4922,
+            "temporal_bit_agreement": 0.7813896789922795,
+            "fixed_key_chroma_cosine": 0.9201418747731533
+          },
+          {
+            "start_seconds": 131.79646258503402,
+            "end_seconds": 143.77795918367346,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4991,
+            "temporal_bit_agreement": 0.7683830895612102,
+            "fixed_key_chroma_cosine": 0.9305692812044648
+          },
+          {
+            "start_seconds": 137.78721088435375,
+            "end_seconds": 149.7687074829932,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5065,
+            "temporal_bit_agreement": 0.764461994076999,
+            "fixed_key_chroma_cosine": 0.9419660592545124
+          },
+          {
+            "start_seconds": 143.77795918367346,
+            "end_seconds": 155.75945578231293,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5044,
+            "temporal_bit_agreement": 0.7773592386994449,
+            "fixed_key_chroma_cosine": 0.9470338591796812
+          },
+          {
+            "start_seconds": 149.7687074829932,
+            "end_seconds": 161.75020408163266,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5000,
+            "temporal_bit_agreement": 0.78,
+            "fixed_key_chroma_cosine": 0.9507486230718497
+          },
+          {
+            "start_seconds": 155.75945578231293,
+            "end_seconds": 167.7409523809524,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5001,
+            "temporal_bit_agreement": 0.7830433913217356,
+            "fixed_key_chroma_cosine": 0.9370829485912254
+          },
+          {
+            "start_seconds": 161.75020408163266,
+            "end_seconds": 173.7317006802721,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4978,
+            "temporal_bit_agreement": 0.7878666130976296,
+            "fixed_key_chroma_cosine": 0.9156095879488443
+          },
+          {
+            "start_seconds": 167.7409523809524,
+            "end_seconds": 179.72244897959183,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4887,
+            "temporal_bit_agreement": 0.7638633108246368,
+            "fixed_key_chroma_cosine": 0.916218297506577
+          },
+          {
+            "start_seconds": 173.7317006802721,
+            "end_seconds": 185.71319727891157,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4861,
+            "temporal_bit_agreement": 0.7527257765891792,
+            "fixed_key_chroma_cosine": 0.9200754802407298
+          },
+          {
+            "start_seconds": 179.72244897959183,
+            "end_seconds": 191.7039455782313,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4923,
+            "temporal_bit_agreement": 0.7641681901279708,
+            "fixed_key_chroma_cosine": 0.9234605283071113
+          },
+          {
+            "start_seconds": 185.71319727891157,
+            "end_seconds": 197.69469387755103,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4937,
+            "temporal_bit_agreement": 0.7676726757139963,
+            "fixed_key_chroma_cosine": 0.9184390946618846
+          },
+          {
+            "start_seconds": 191.7039455782313,
+            "end_seconds": 203.68544217687074,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4903,
+            "temporal_bit_agreement": 0.7648378543748725,
+            "fixed_key_chroma_cosine": 0.9161285780297906
+          },
+          {
+            "start_seconds": 197.69469387755103,
+            "end_seconds": 209.67619047619047,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4958,
+            "temporal_bit_agreement": 0.7505042355788625,
+            "fixed_key_chroma_cosine": 0.921140901122991
+          },
+          {
+            "start_seconds": 203.68544217687074,
+            "end_seconds": 215.6669387755102,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4933,
+            "temporal_bit_agreement": 0.7360632475167241,
+            "fixed_key_chroma_cosine": 0.9253863068669873
+          },
+          {
+            "start_seconds": 209.67619047619047,
+            "end_seconds": 221.65768707482994,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4799,
+            "temporal_bit_agreement": 0.7414044592623463,
+            "fixed_key_chroma_cosine": 0.9242190869310448
+          },
+          {
+            "start_seconds": 215.6669387755102,
+            "end_seconds": 227.64843537414967,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4701,
+            "temporal_bit_agreement": 0.7592001701765582,
+            "fixed_key_chroma_cosine": 0.9067902778941703
+          },
+          {
+            "start_seconds": 221.65768707482994,
+            "end_seconds": 233.63918367346938,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4677,
+            "temporal_bit_agreement": 0.745777207611717,
+            "fixed_key_chroma_cosine": 0.899871960890394
+          },
+          {
+            "start_seconds": 227.64843537414967,
+            "end_seconds": 239.6299319727891,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4741,
+            "temporal_bit_agreement": 0.7135625395486185,
+            "fixed_key_chroma_cosine": 0.904771793706365
+          },
+          {
+            "start_seconds": 228.34503401360544,
+            "end_seconds": 240.3265306122449,
+            "status": "measured",
+            "comparable_frames": 248,
+            "compared_bits": 4570,
+            "temporal_bit_agreement": 0.7109409190371991,
+            "fixed_key_chroma_cosine": 0.9055977697238141
+          }
+        ],
+        "recognition_verdict": "not_available: local diagnostics are not an API match test"
+      }
+    },
+    {
+      "name": "telephone",
+      "settings": {
+        "low": 400,
+        "high": 3000,
+        "levels": 3,
+        "stages": 1
+      },
+      "comparison": {
+        "method": "CopyFinger LocalPrint v1",
+        "alignment": "zero lag; no search, pitch rotation or time warp",
+        "fingerprint_sha256_equal": false,
+        "original_fingerprint_sha256": "6ccde2787c05069d4b826d02edbcedc8ef7ed5d719cb3af4d348ebc5e04df664",
+        "converted_fingerprint_sha256": "8f5e1c316113513d918f982ed66ccbe20b8936dae56028fafe4c77a1f524dfab",
+        "duration_difference_seconds": 0.0,
+        "original_frames": 5175,
+        "converted_frames": 5175,
+        "frame_step_seconds": 0.046439909297052155,
+        "shared_timeline_seconds": 240.3265306122449,
+        "whole_overlap": {
+          "status": "measured",
+          "comparable_frames": 5162,
+          "compared_bits": 98107,
+          "temporal_bit_agreement": 0.7382653633277951,
+          "fixed_key_chroma_cosine": 0.9062643414287616
+        },
+        "windows": [
+          {
+            "start_seconds": 0.0,
+            "end_seconds": 11.981496598639456,
+            "status": "measured",
+            "comparable_frames": 255,
+            "compared_bits": 4864,
+            "temporal_bit_agreement": 0.7314967105263158,
+            "fixed_key_chroma_cosine": 0.856687355577228
+          },
+          {
+            "start_seconds": 5.990748299319728,
+            "end_seconds": 17.972244897959182,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4901,
+            "temporal_bit_agreement": 0.7296470108141195,
+            "fixed_key_chroma_cosine": 0.8621548031622169
+          },
+          {
+            "start_seconds": 11.981496598639456,
+            "end_seconds": 23.962993197278912,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4848,
+            "temporal_bit_agreement": 0.7376237623762376,
+            "fixed_key_chroma_cosine": 0.8916187417991891
+          },
+          {
+            "start_seconds": 17.972244897959182,
+            "end_seconds": 29.95374149659864,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4905,
+            "temporal_bit_agreement": 0.7620795107033639,
+            "fixed_key_chroma_cosine": 0.9070274406043934
+          },
+          {
+            "start_seconds": 23.962993197278912,
+            "end_seconds": 35.944489795918365,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4955,
+            "temporal_bit_agreement": 0.7671039354187689,
+            "fixed_key_chroma_cosine": 0.9059763480340276
+          },
+          {
+            "start_seconds": 29.95374149659864,
+            "end_seconds": 41.9352380952381,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4902,
+            "temporal_bit_agreement": 0.7598939208486332,
+            "fixed_key_chroma_cosine": 0.9053888442380764
+          },
+          {
+            "start_seconds": 35.944489795918365,
+            "end_seconds": 47.925986394557825,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4885,
+            "temporal_bit_agreement": 0.7559877175025589,
+            "fixed_key_chroma_cosine": 0.9044686701802587
+          },
+          {
+            "start_seconds": 41.9352380952381,
+            "end_seconds": 53.91673469387755,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4923,
+            "temporal_bit_agreement": 0.7615275238675604,
+            "fixed_key_chroma_cosine": 0.9095027126751676
+          },
+          {
+            "start_seconds": 47.925986394557825,
+            "end_seconds": 59.90748299319728,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4904,
+            "temporal_bit_agreement": 0.7585644371941273,
+            "fixed_key_chroma_cosine": 0.9067543669159635
+          },
+          {
+            "start_seconds": 53.91673469387755,
+            "end_seconds": 65.89823129251701,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4862,
+            "temporal_bit_agreement": 0.746606334841629,
+            "fixed_key_chroma_cosine": 0.9063635633150795
+          },
+          {
+            "start_seconds": 59.90748299319728,
+            "end_seconds": 71.88897959183673,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4907,
+            "temporal_bit_agreement": 0.7356837171387813,
+            "fixed_key_chroma_cosine": 0.9088439382587237
+          },
+          {
+            "start_seconds": 65.89823129251701,
+            "end_seconds": 77.87972789115646,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5017,
+            "temporal_bit_agreement": 0.7197528403428344,
+            "fixed_key_chroma_cosine": 0.9111634244827718
+          },
+          {
+            "start_seconds": 71.88897959183673,
+            "end_seconds": 83.8704761904762,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4980,
+            "temporal_bit_agreement": 0.7066265060240964,
+            "fixed_key_chroma_cosine": 0.9048026968848131
+          },
+          {
+            "start_seconds": 77.87972789115646,
+            "end_seconds": 89.86122448979592,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4986,
+            "temporal_bit_agreement": 0.6953469715202567,
+            "fixed_key_chroma_cosine": 0.909471674338979
+          },
+          {
+            "start_seconds": 83.8704761904762,
+            "end_seconds": 95.85197278911565,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5017,
+            "temporal_bit_agreement": 0.7175602949970101,
+            "fixed_key_chroma_cosine": 0.9200716553576664
+          },
+          {
+            "start_seconds": 89.86122448979592,
+            "end_seconds": 101.84272108843537,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4934,
+            "temporal_bit_agreement": 0.7436157276043778,
+            "fixed_key_chroma_cosine": 0.9062694787586718
+          },
+          {
+            "start_seconds": 95.85197278911565,
+            "end_seconds": 107.8334693877551,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4894,
+            "temporal_bit_agreement": 0.7306906416019616,
+            "fixed_key_chroma_cosine": 0.9019314293008643
+          },
+          {
+            "start_seconds": 101.84272108843537,
+            "end_seconds": 113.82421768707484,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4837,
+            "temporal_bit_agreement": 0.7115980979946248,
+            "fixed_key_chroma_cosine": 0.8953310034924501
+          },
+          {
+            "start_seconds": 107.8334693877551,
+            "end_seconds": 119.81496598639455,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4820,
+            "temporal_bit_agreement": 0.7211618257261411,
+            "fixed_key_chroma_cosine": 0.9069576554743368
+          },
+          {
+            "start_seconds": 113.82421768707484,
+            "end_seconds": 125.80571428571429,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4968,
+            "temporal_bit_agreement": 0.731280193236715,
+            "fixed_key_chroma_cosine": 0.9194578354085514
+          },
+          {
+            "start_seconds": 119.81496598639455,
+            "end_seconds": 131.79646258503402,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4999,
+            "temporal_bit_agreement": 0.7489497899579916,
+            "fixed_key_chroma_cosine": 0.9124044250671729
+          },
+          {
+            "start_seconds": 125.80571428571429,
+            "end_seconds": 137.78721088435375,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4915,
+            "temporal_bit_agreement": 0.7704984740590031,
+            "fixed_key_chroma_cosine": 0.9111106844742991
+          },
+          {
+            "start_seconds": 131.79646258503402,
+            "end_seconds": 143.77795918367346,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4994,
+            "temporal_bit_agreement": 0.7390869042851421,
+            "fixed_key_chroma_cosine": 0.9200363445053548
+          },
+          {
+            "start_seconds": 137.78721088435375,
+            "end_seconds": 149.7687074829932,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5040,
+            "temporal_bit_agreement": 0.7273809523809524,
+            "fixed_key_chroma_cosine": 0.9323211401891134
+          },
+          {
+            "start_seconds": 143.77795918367346,
+            "end_seconds": 155.75945578231293,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5007,
+            "temporal_bit_agreement": 0.7487517475534252,
+            "fixed_key_chroma_cosine": 0.9399793023485935
+          },
+          {
+            "start_seconds": 149.7687074829932,
+            "end_seconds": 161.75020408163266,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4968,
+            "temporal_bit_agreement": 0.7578502415458938,
+            "fixed_key_chroma_cosine": 0.9448828701665414
+          },
+          {
+            "start_seconds": 155.75945578231293,
+            "end_seconds": 167.7409523809524,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4976,
+            "temporal_bit_agreement": 0.7654742765273312,
+            "fixed_key_chroma_cosine": 0.9299328096271642
+          },
+          {
+            "start_seconds": 161.75020408163266,
+            "end_seconds": 173.7317006802721,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4966,
+            "temporal_bit_agreement": 0.7698348771647201,
+            "fixed_key_chroma_cosine": 0.907298912881544
+          },
+          {
+            "start_seconds": 167.7409523809524,
+            "end_seconds": 179.72244897959183,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4840,
+            "temporal_bit_agreement": 0.7520661157024794,
+            "fixed_key_chroma_cosine": 0.9064049036865717
+          },
+          {
+            "start_seconds": 173.7317006802721,
+            "end_seconds": 185.71319727891157,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4807,
+            "temporal_bit_agreement": 0.7482837528604119,
+            "fixed_key_chroma_cosine": 0.9077867387695333
+          },
+          {
+            "start_seconds": 179.72244897959183,
+            "end_seconds": 191.7039455782313,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4899,
+            "temporal_bit_agreement": 0.7603592569912228,
+            "fixed_key_chroma_cosine": 0.9131572095893604
+          },
+          {
+            "start_seconds": 185.71319727891157,
+            "end_seconds": 197.69469387755103,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4938,
+            "temporal_bit_agreement": 0.7577966788173349,
+            "fixed_key_chroma_cosine": 0.9096803618312254
+          },
+          {
+            "start_seconds": 191.7039455782313,
+            "end_seconds": 203.68544217687074,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4913,
+            "temporal_bit_agreement": 0.7510685935273763,
+            "fixed_key_chroma_cosine": 0.9053046973743505
+          },
+          {
+            "start_seconds": 197.69469387755103,
+            "end_seconds": 209.67619047619047,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4927,
+            "temporal_bit_agreement": 0.7306677491374062,
+            "fixed_key_chroma_cosine": 0.9060612409700651
+          },
+          {
+            "start_seconds": 203.68544217687074,
+            "end_seconds": 215.6669387755102,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4917,
+            "temporal_bit_agreement": 0.7077486272117145,
+            "fixed_key_chroma_cosine": 0.9082448913650437
+          },
+          {
+            "start_seconds": 209.67619047619047,
+            "end_seconds": 221.65768707482994,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4827,
+            "temporal_bit_agreement": 0.7178371659415786,
+            "fixed_key_chroma_cosine": 0.910110088744458
+          },
+          {
+            "start_seconds": 215.6669387755102,
+            "end_seconds": 227.64843537414967,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4708,
+            "temporal_bit_agreement": 0.7412914188615123,
+            "fixed_key_chroma_cosine": 0.8969055865595786
+          },
+          {
+            "start_seconds": 221.65768707482994,
+            "end_seconds": 233.63918367346938,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4650,
+            "temporal_bit_agreement": 0.7243010752688172,
+            "fixed_key_chroma_cosine": 0.8868704379570621
+          },
+          {
+            "start_seconds": 227.64843537414967,
+            "end_seconds": 239.6299319727891,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4689,
+            "temporal_bit_agreement": 0.6869268500746428,
+            "fixed_key_chroma_cosine": 0.8827968340083505
+          },
+          {
+            "start_seconds": 228.34503401360544,
+            "end_seconds": 240.3265306122449,
+            "status": "measured",
+            "comparable_frames": 248,
+            "compared_bits": 4512,
+            "temporal_bit_agreement": 0.6832890070921985,
+            "fixed_key_chroma_cosine": 0.8830676715938098
+          }
+        ],
+        "recognition_verdict": "not_available: local diagnostics are not an API match test"
+      }
+    },
+    {
+      "name": "stacked-midrange",
+      "settings": {
+        "low": 250,
+        "high": 4500,
+        "levels": 7,
+        "stages": 3
+      },
+      "comparison": {
+        "method": "CopyFinger LocalPrint v1",
+        "alignment": "zero lag; no search, pitch rotation or time warp",
+        "fingerprint_sha256_equal": false,
+        "original_fingerprint_sha256": "6ccde2787c05069d4b826d02edbcedc8ef7ed5d719cb3af4d348ebc5e04df664",
+        "converted_fingerprint_sha256": "ea672ae511a2e1fd6882c784983f5d18a119f4ca6443aaa590d8004e71b9cdeb",
+        "duration_difference_seconds": 0.0,
+        "original_frames": 5175,
+        "converted_frames": 5175,
+        "frame_step_seconds": 0.046439909297052155,
+        "shared_timeline_seconds": 240.3265306122449,
+        "whole_overlap": {
+          "status": "measured",
+          "comparable_frames": 5162,
+          "compared_bits": 97282,
+          "temporal_bit_agreement": 0.701753664603935,
+          "fixed_key_chroma_cosine": 0.904948089676443
+        },
+        "windows": [
+          {
+            "start_seconds": 0.0,
+            "end_seconds": 11.981496598639456,
+            "status": "measured",
+            "comparable_frames": 255,
+            "compared_bits": 4799,
+            "temporal_bit_agreement": 0.6857678683058971,
+            "fixed_key_chroma_cosine": 0.8513174149026134
+          },
+          {
+            "start_seconds": 5.990748299319728,
+            "end_seconds": 17.972244897959182,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4867,
+            "temporal_bit_agreement": 0.6938565851653996,
+            "fixed_key_chroma_cosine": 0.8602724586919136
+          },
+          {
+            "start_seconds": 11.981496598639456,
+            "end_seconds": 23.962993197278912,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4818,
+            "temporal_bit_agreement": 0.7048567870485679,
+            "fixed_key_chroma_cosine": 0.8927214934646307
+          },
+          {
+            "start_seconds": 17.972244897959182,
+            "end_seconds": 29.95374149659864,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4855,
+            "temporal_bit_agreement": 0.7221421215242019,
+            "fixed_key_chroma_cosine": 0.9069493511157207
+          },
+          {
+            "start_seconds": 23.962993197278912,
+            "end_seconds": 35.944489795918365,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4892,
+            "temporal_bit_agreement": 0.7199509403107114,
+            "fixed_key_chroma_cosine": 0.908450238221132
+          },
+          {
+            "start_seconds": 29.95374149659864,
+            "end_seconds": 41.9352380952381,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4819,
+            "temporal_bit_agreement": 0.7101058310852874,
+            "fixed_key_chroma_cosine": 0.9052266149057926
+          },
+          {
+            "start_seconds": 35.944489795918365,
+            "end_seconds": 47.925986394557825,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4799,
+            "temporal_bit_agreement": 0.6909772869347781,
+            "fixed_key_chroma_cosine": 0.9007267037427422
+          },
+          {
+            "start_seconds": 41.9352380952381,
+            "end_seconds": 53.91673469387755,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4857,
+            "temporal_bit_agreement": 0.7033148033765699,
+            "fixed_key_chroma_cosine": 0.9082028550681148
+          },
+          {
+            "start_seconds": 47.925986394557825,
+            "end_seconds": 59.90748299319728,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4858,
+            "temporal_bit_agreement": 0.716344174557431,
+            "fixed_key_chroma_cosine": 0.9083914840908236
+          },
+          {
+            "start_seconds": 53.91673469387755,
+            "end_seconds": 65.89823129251701,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4849,
+            "temporal_bit_agreement": 0.7038564652505671,
+            "fixed_key_chroma_cosine": 0.9051752669117679
+          },
+          {
+            "start_seconds": 59.90748299319728,
+            "end_seconds": 71.88897959183673,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4877,
+            "temporal_bit_agreement": 0.6996104162394915,
+            "fixed_key_chroma_cosine": 0.904262814399494
+          },
+          {
+            "start_seconds": 65.89823129251701,
+            "end_seconds": 77.87972789115646,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4988,
+            "temporal_bit_agreement": 0.70028067361668,
+            "fixed_key_chroma_cosine": 0.908288633593515
+          },
+          {
+            "start_seconds": 71.88897959183673,
+            "end_seconds": 83.8704761904762,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4963,
+            "temporal_bit_agreement": 0.695748539190006,
+            "fixed_key_chroma_cosine": 0.9014836786233505
+          },
+          {
+            "start_seconds": 77.87972789115646,
+            "end_seconds": 89.86122448979592,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4916,
+            "temporal_bit_agreement": 0.685720097640358,
+            "fixed_key_chroma_cosine": 0.9067246668572901
+          },
+          {
+            "start_seconds": 83.8704761904762,
+            "end_seconds": 95.85197278911565,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4945,
+            "temporal_bit_agreement": 0.6936299292214358,
+            "fixed_key_chroma_cosine": 0.9182555066531743
+          },
+          {
+            "start_seconds": 89.86122448979592,
+            "end_seconds": 101.84272108843537,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4852,
+            "temporal_bit_agreement": 0.7079554822753503,
+            "fixed_key_chroma_cosine": 0.9039147979534974
+          },
+          {
+            "start_seconds": 95.85197278911565,
+            "end_seconds": 107.8334693877551,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4811,
+            "temporal_bit_agreement": 0.6919559343171898,
+            "fixed_key_chroma_cosine": 0.8980911516044651
+          },
+          {
+            "start_seconds": 101.84272108843537,
+            "end_seconds": 113.82421768707484,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4809,
+            "temporal_bit_agreement": 0.6668746101060512,
+            "fixed_key_chroma_cosine": 0.8922131335855393
+          },
+          {
+            "start_seconds": 107.8334693877551,
+            "end_seconds": 119.81496598639455,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4784,
+            "temporal_bit_agreement": 0.6849916387959866,
+            "fixed_key_chroma_cosine": 0.9056837158723128
+          },
+          {
+            "start_seconds": 113.82421768707484,
+            "end_seconds": 125.80571428571429,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4890,
+            "temporal_bit_agreement": 0.7002044989775051,
+            "fixed_key_chroma_cosine": 0.917211907787097
+          },
+          {
+            "start_seconds": 119.81496598639455,
+            "end_seconds": 131.79646258503402,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4937,
+            "temporal_bit_agreement": 0.7048815069880494,
+            "fixed_key_chroma_cosine": 0.9111726422316354
+          },
+          {
+            "start_seconds": 125.80571428571429,
+            "end_seconds": 137.78721088435375,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4895,
+            "temporal_bit_agreement": 0.7144024514811032,
+            "fixed_key_chroma_cosine": 0.9126008061220903
+          },
+          {
+            "start_seconds": 131.79646258503402,
+            "end_seconds": 143.77795918367346,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4961,
+            "temporal_bit_agreement": 0.7196129812537795,
+            "fixed_key_chroma_cosine": 0.9203707437445837
+          },
+          {
+            "start_seconds": 137.78721088435375,
+            "end_seconds": 149.7687074829932,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5027,
+            "temporal_bit_agreement": 0.7260791724686692,
+            "fixed_key_chroma_cosine": 0.9302058928010124
+          },
+          {
+            "start_seconds": 143.77795918367346,
+            "end_seconds": 155.75945578231293,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 5016,
+            "temporal_bit_agreement": 0.7380382775119617,
+            "fixed_key_chroma_cosine": 0.9375022088735893
+          },
+          {
+            "start_seconds": 149.7687074829932,
+            "end_seconds": 161.75020408163266,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4962,
+            "temporal_bit_agreement": 0.739621120515921,
+            "fixed_key_chroma_cosine": 0.941679904882254
+          },
+          {
+            "start_seconds": 155.75945578231293,
+            "end_seconds": 167.7409523809524,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4936,
+            "temporal_bit_agreement": 0.723257698541329,
+            "fixed_key_chroma_cosine": 0.9300752459585402
+          },
+          {
+            "start_seconds": 161.75020408163266,
+            "end_seconds": 173.7317006802721,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4907,
+            "temporal_bit_agreement": 0.717546362339515,
+            "fixed_key_chroma_cosine": 0.9102568632562824
+          },
+          {
+            "start_seconds": 167.7409523809524,
+            "end_seconds": 179.72244897959183,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4828,
+            "temporal_bit_agreement": 0.7025683512841756,
+            "fixed_key_chroma_cosine": 0.9063396813717848
+          },
+          {
+            "start_seconds": 173.7317006802721,
+            "end_seconds": 185.71319727891157,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4788,
+            "temporal_bit_agreement": 0.695906432748538,
+            "fixed_key_chroma_cosine": 0.9049860245454209
+          },
+          {
+            "start_seconds": 179.72244897959183,
+            "end_seconds": 191.7039455782313,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4871,
+            "temporal_bit_agreement": 0.7158694313282693,
+            "fixed_key_chroma_cosine": 0.9111177952213343
+          },
+          {
+            "start_seconds": 185.71319727891157,
+            "end_seconds": 197.69469387755103,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4920,
+            "temporal_bit_agreement": 0.7095528455284553,
+            "fixed_key_chroma_cosine": 0.9108798723590847
+          },
+          {
+            "start_seconds": 191.7039455782313,
+            "end_seconds": 203.68544217687074,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4831,
+            "temporal_bit_agreement": 0.693024218588284,
+            "fixed_key_chroma_cosine": 0.9047752392495112
+          },
+          {
+            "start_seconds": 197.69469387755103,
+            "end_seconds": 209.67619047619047,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4851,
+            "temporal_bit_agreement": 0.7015048443619872,
+            "fixed_key_chroma_cosine": 0.9027608733566871
+          },
+          {
+            "start_seconds": 203.68544217687074,
+            "end_seconds": 215.6669387755102,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4897,
+            "temporal_bit_agreement": 0.6906269144374106,
+            "fixed_key_chroma_cosine": 0.9066401894253632
+          },
+          {
+            "start_seconds": 209.67619047619047,
+            "end_seconds": 221.65768707482994,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4801,
+            "temporal_bit_agreement": 0.686940220787336,
+            "fixed_key_chroma_cosine": 0.9071670736805441
+          },
+          {
+            "start_seconds": 215.6669387755102,
+            "end_seconds": 227.64843537414967,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4673,
+            "temporal_bit_agreement": 0.7031885298523433,
+            "fixed_key_chroma_cosine": 0.8946191182139389
+          },
+          {
+            "start_seconds": 221.65768707482994,
+            "end_seconds": 233.63918367346938,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4642,
+            "temporal_bit_agreement": 0.6876346402412753,
+            "fixed_key_chroma_cosine": 0.8879130900669575
+          },
+          {
+            "start_seconds": 227.64843537414967,
+            "end_seconds": 239.6299319727891,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4686,
+            "temporal_bit_agreement": 0.6598378147673922,
+            "fixed_key_chroma_cosine": 0.8849233405442625
+          },
+          {
+            "start_seconds": 228.34503401360544,
+            "end_seconds": 240.3265306122449,
+            "status": "measured",
+            "comparable_frames": 248,
+            "compared_bits": 4530,
+            "temporal_bit_agreement": 0.6545253863134658,
+            "fixed_key_chroma_cosine": 0.8850391003676941
+          }
+        ],
+        "recognition_verdict": "not_available: local diagnostics are not an API match test"
+      }
+    },
+    {
+      "name": "stacked-six",
+      "settings": {
+        "low": 250,
+        "high": 4500,
+        "levels": 7,
+        "stages": 6
+      },
+      "comparison": {
+        "method": "CopyFinger LocalPrint v1",
+        "alignment": "zero lag; no search, pitch rotation or time warp",
+        "fingerprint_sha256_equal": false,
+        "original_fingerprint_sha256": "6ccde2787c05069d4b826d02edbcedc8ef7ed5d719cb3af4d348ebc5e04df664",
+        "converted_fingerprint_sha256": "e89a4387c7796da10a4cb6c4eb91ad7b49385b24d37bc3c1094e3ef4e3820248",
+        "duration_difference_seconds": 0.0,
+        "original_frames": 5175,
+        "converted_frames": 5175,
+        "frame_step_seconds": 0.046439909297052155,
+        "shared_timeline_seconds": 240.3265306122449,
+        "whole_overlap": {
+          "status": "measured",
+          "comparable_frames": 5162,
+          "compared_bits": 96336,
+          "temporal_bit_agreement": 0.6538261916625145,
+          "fixed_key_chroma_cosine": 0.8929481601012031
+        },
+        "windows": [
+          {
+            "start_seconds": 0.0,
+            "end_seconds": 11.981496598639456,
+            "status": "measured",
+            "comparable_frames": 255,
+            "compared_bits": 4731,
+            "temporal_bit_agreement": 0.642570281124498,
+            "fixed_key_chroma_cosine": 0.8263133041584839
+          },
+          {
+            "start_seconds": 5.990748299319728,
+            "end_seconds": 17.972244897959182,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4786,
+            "temporal_bit_agreement": 0.6581696615127455,
+            "fixed_key_chroma_cosine": 0.8361340505015575
+          },
+          {
+            "start_seconds": 11.981496598639456,
+            "end_seconds": 23.962993197278912,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4766,
+            "temporal_bit_agreement": 0.6653378094838439,
+            "fixed_key_chroma_cosine": 0.8739651827709571
+          },
+          {
+            "start_seconds": 17.972244897959182,
+            "end_seconds": 29.95374149659864,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4821,
+            "temporal_bit_agreement": 0.6639701306782825,
+            "fixed_key_chroma_cosine": 0.8959272826645878
+          },
+          {
+            "start_seconds": 23.962993197278912,
+            "end_seconds": 35.944489795918365,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4848,
+            "temporal_bit_agreement": 0.6664603960396039,
+            "fixed_key_chroma_cosine": 0.902859461163951
+          },
+          {
+            "start_seconds": 29.95374149659864,
+            "end_seconds": 41.9352380952381,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4803,
+            "temporal_bit_agreement": 0.6664584634603373,
+            "fixed_key_chroma_cosine": 0.8987011591937004
+          },
+          {
+            "start_seconds": 35.944489795918365,
+            "end_seconds": 47.925986394557825,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4792,
+            "temporal_bit_agreement": 0.6483722871452421,
+            "fixed_key_chroma_cosine": 0.8951129820190538
+          },
+          {
+            "start_seconds": 41.9352380952381,
+            "end_seconds": 53.91673469387755,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4847,
+            "temporal_bit_agreement": 0.6511244068495977,
+            "fixed_key_chroma_cosine": 0.9023347177760982
+          },
+          {
+            "start_seconds": 47.925986394557825,
+            "end_seconds": 59.90748299319728,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4859,
+            "temporal_bit_agreement": 0.6647458324758181,
+            "fixed_key_chroma_cosine": 0.9030106079413274
+          },
+          {
+            "start_seconds": 53.91673469387755,
+            "end_seconds": 65.89823129251701,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4799,
+            "temporal_bit_agreement": 0.6526359658262137,
+            "fixed_key_chroma_cosine": 0.8989678699919901
+          },
+          {
+            "start_seconds": 59.90748299319728,
+            "end_seconds": 71.88897959183673,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4803,
+            "temporal_bit_agreement": 0.6454299396210702,
+            "fixed_key_chroma_cosine": 0.8904373190965325
+          },
+          {
+            "start_seconds": 65.89823129251701,
+            "end_seconds": 77.87972789115646,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4954,
+            "temporal_bit_agreement": 0.655631812676625,
+            "fixed_key_chroma_cosine": 0.8904164030352338
+          },
+          {
+            "start_seconds": 71.88897959183673,
+            "end_seconds": 83.8704761904762,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4918,
+            "temporal_bit_agreement": 0.6490443269621797,
+            "fixed_key_chroma_cosine": 0.8795815238219624
+          },
+          {
+            "start_seconds": 77.87972789115646,
+            "end_seconds": 89.86122448979592,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4873,
+            "temporal_bit_agreement": 0.629591627334291,
+            "fixed_key_chroma_cosine": 0.8835016531578129
+          },
+          {
+            "start_seconds": 83.8704761904762,
+            "end_seconds": 95.85197278911565,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4909,
+            "temporal_bit_agreement": 0.6339376655123243,
+            "fixed_key_chroma_cosine": 0.899162550781886
+          },
+          {
+            "start_seconds": 89.86122448979592,
+            "end_seconds": 101.84272108843537,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4807,
+            "temporal_bit_agreement": 0.6492614936550863,
+            "fixed_key_chroma_cosine": 0.8888392007449613
+          },
+          {
+            "start_seconds": 95.85197278911565,
+            "end_seconds": 107.8334693877551,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4754,
+            "temporal_bit_agreement": 0.647665124106016,
+            "fixed_key_chroma_cosine": 0.8898236622551315
+          },
+          {
+            "start_seconds": 101.84272108843537,
+            "end_seconds": 113.82421768707484,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4752,
+            "temporal_bit_agreement": 0.6294191919191919,
+            "fixed_key_chroma_cosine": 0.887513247947174
+          },
+          {
+            "start_seconds": 107.8334693877551,
+            "end_seconds": 119.81496598639455,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4750,
+            "temporal_bit_agreement": 0.6330526315789474,
+            "fixed_key_chroma_cosine": 0.8986305553738417
+          },
+          {
+            "start_seconds": 113.82421768707484,
+            "end_seconds": 125.80571428571429,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4862,
+            "temporal_bit_agreement": 0.6478815302344714,
+            "fixed_key_chroma_cosine": 0.9087450003036552
+          },
+          {
+            "start_seconds": 119.81496598639455,
+            "end_seconds": 131.79646258503402,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4890,
+            "temporal_bit_agreement": 0.6552147239263804,
+            "fixed_key_chroma_cosine": 0.9032839172969155
+          },
+          {
+            "start_seconds": 125.80571428571429,
+            "end_seconds": 137.78721088435375,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4818,
+            "temporal_bit_agreement": 0.6519302615193027,
+            "fixed_key_chroma_cosine": 0.9042199237204291
+          },
+          {
+            "start_seconds": 131.79646258503402,
+            "end_seconds": 143.77795918367346,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4880,
+            "temporal_bit_agreement": 0.6631147540983606,
+            "fixed_key_chroma_cosine": 0.9096005303784599
+          },
+          {
+            "start_seconds": 137.78721088435375,
+            "end_seconds": 149.7687074829932,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4948,
+            "temporal_bit_agreement": 0.6885610347615198,
+            "fixed_key_chroma_cosine": 0.9184040567414236
+          },
+          {
+            "start_seconds": 143.77795918367346,
+            "end_seconds": 155.75945578231293,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4959,
+            "temporal_bit_agreement": 0.7011494252873564,
+            "fixed_key_chroma_cosine": 0.9272494566173461
+          },
+          {
+            "start_seconds": 149.7687074829932,
+            "end_seconds": 161.75020408163266,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4890,
+            "temporal_bit_agreement": 0.692638036809816,
+            "fixed_key_chroma_cosine": 0.9316094216609677
+          },
+          {
+            "start_seconds": 155.75945578231293,
+            "end_seconds": 167.7409523809524,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4854,
+            "temporal_bit_agreement": 0.681087762669963,
+            "fixed_key_chroma_cosine": 0.9225114470381862
+          },
+          {
+            "start_seconds": 161.75020408163266,
+            "end_seconds": 173.7317006802721,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4866,
+            "temporal_bit_agreement": 0.677147554459515,
+            "fixed_key_chroma_cosine": 0.9051731845587845
+          },
+          {
+            "start_seconds": 167.7409523809524,
+            "end_seconds": 179.72244897959183,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4730,
+            "temporal_bit_agreement": 0.6589852008456659,
+            "fixed_key_chroma_cosine": 0.8991172265659738
+          },
+          {
+            "start_seconds": 173.7317006802721,
+            "end_seconds": 185.71319727891157,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4713,
+            "temporal_bit_agreement": 0.6513897729683853,
+            "fixed_key_chroma_cosine": 0.8977541384850234
+          },
+          {
+            "start_seconds": 179.72244897959183,
+            "end_seconds": 191.7039455782313,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4855,
+            "temporal_bit_agreement": 0.6597322348094747,
+            "fixed_key_chroma_cosine": 0.9048725883629859
+          },
+          {
+            "start_seconds": 185.71319727891157,
+            "end_seconds": 197.69469387755103,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4855,
+            "temporal_bit_agreement": 0.6492276004119465,
+            "fixed_key_chroma_cosine": 0.9044991526187052
+          },
+          {
+            "start_seconds": 191.7039455782313,
+            "end_seconds": 203.68544217687074,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4817,
+            "temporal_bit_agreement": 0.6391945194104214,
+            "fixed_key_chroma_cosine": 0.8962900267877032
+          },
+          {
+            "start_seconds": 197.69469387755103,
+            "end_seconds": 209.67619047619047,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4850,
+            "temporal_bit_agreement": 0.654639175257732,
+            "fixed_key_chroma_cosine": 0.8889403501902862
+          },
+          {
+            "start_seconds": 203.68544217687074,
+            "end_seconds": 215.6669387755102,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4845,
+            "temporal_bit_agreement": 0.66109391124871,
+            "fixed_key_chroma_cosine": 0.8901181263365112
+          },
+          {
+            "start_seconds": 209.67619047619047,
+            "end_seconds": 221.65768707482994,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4741,
+            "temporal_bit_agreement": 0.6483864163678549,
+            "fixed_key_chroma_cosine": 0.8929399328783257
+          },
+          {
+            "start_seconds": 215.6669387755102,
+            "end_seconds": 227.64843537414967,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4610,
+            "temporal_bit_agreement": 0.6470715835140998,
+            "fixed_key_chroma_cosine": 0.8872264306013891
+          },
+          {
+            "start_seconds": 221.65768707482994,
+            "end_seconds": 233.63918367346938,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4603,
+            "temporal_bit_agreement": 0.6350206387138823,
+            "fixed_key_chroma_cosine": 0.8735596112626189
+          },
+          {
+            "start_seconds": 227.64843537414967,
+            "end_seconds": 239.6299319727891,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4675,
+            "temporal_bit_agreement": 0.612620320855615,
+            "fixed_key_chroma_cosine": 0.8575720632966313
+          },
+          {
+            "start_seconds": 228.34503401360544,
+            "end_seconds": 240.3265306122449,
+            "status": "measured",
+            "comparable_frames": 248,
+            "compared_bits": 4508,
+            "temporal_bit_agreement": 0.6093611357586513,
+            "fixed_key_chroma_cosine": 0.856598996945537
+          }
+        ],
+        "recognition_verdict": "not_available: local diagnostics are not an API match test"
+      }
+    },
+    {
+      "name": "stacked-seven",
+      "settings": {
+        "low": 250,
+        "high": 4500,
+        "levels": 7,
+        "stages": 7
+      },
+      "comparison": {
+        "method": "CopyFinger LocalPrint v1",
+        "alignment": "zero lag; no search, pitch rotation or time warp",
+        "fingerprint_sha256_equal": false,
+        "original_fingerprint_sha256": "6ccde2787c05069d4b826d02edbcedc8ef7ed5d719cb3af4d348ebc5e04df664",
+        "converted_fingerprint_sha256": "f83fb0223f6ec0a195790dd14c8fc47b9f1e2c950c718f57f3823acbfe0c5a3e",
+        "duration_difference_seconds": 0.0,
+        "original_frames": 5175,
+        "converted_frames": 5175,
+        "frame_step_seconds": 0.046439909297052155,
+        "shared_timeline_seconds": 240.3265306122449,
+        "whole_overlap": {
+          "status": "measured",
+          "comparable_frames": 5162,
+          "compared_bits": 96055,
+          "temporal_bit_agreement": 0.6445890375305814,
+          "fixed_key_chroma_cosine": 0.8894881458545263
+        },
+        "windows": [
+          {
+            "start_seconds": 0.0,
+            "end_seconds": 11.981496598639456,
+            "status": "measured",
+            "comparable_frames": 255,
+            "compared_bits": 4730,
+            "temporal_bit_agreement": 0.6302325581395349,
+            "fixed_key_chroma_cosine": 0.817995209149633
+          },
+          {
+            "start_seconds": 5.990748299319728,
+            "end_seconds": 17.972244897959182,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4793,
+            "temporal_bit_agreement": 0.6513665762570415,
+            "fixed_key_chroma_cosine": 0.8285192864859908
+          },
+          {
+            "start_seconds": 11.981496598639456,
+            "end_seconds": 23.962993197278912,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4745,
+            "temporal_bit_agreement": 0.6543730242360379,
+            "fixed_key_chroma_cosine": 0.8687401368245333
+          },
+          {
+            "start_seconds": 17.972244897959182,
+            "end_seconds": 29.95374149659864,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4779,
+            "temporal_bit_agreement": 0.6610169491525424,
+            "fixed_key_chroma_cosine": 0.8934115978464352
+          },
+          {
+            "start_seconds": 23.962993197278912,
+            "end_seconds": 35.944489795918365,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4840,
+            "temporal_bit_agreement": 0.6644628099173554,
+            "fixed_key_chroma_cosine": 0.9011271212409816
+          },
+          {
+            "start_seconds": 29.95374149659864,
+            "end_seconds": 41.9352380952381,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4788,
+            "temporal_bit_agreement": 0.6560150375939849,
+            "fixed_key_chroma_cosine": 0.8964921182506227
+          },
+          {
+            "start_seconds": 35.944489795918365,
+            "end_seconds": 47.925986394557825,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4781,
+            "temporal_bit_agreement": 0.6433800460154779,
+            "fixed_key_chroma_cosine": 0.8930428939588957
+          },
+          {
+            "start_seconds": 41.9352380952381,
+            "end_seconds": 53.91673469387755,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4848,
+            "temporal_bit_agreement": 0.6456270627062707,
+            "fixed_key_chroma_cosine": 0.900272461005579
+          },
+          {
+            "start_seconds": 47.925986394557825,
+            "end_seconds": 59.90748299319728,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4822,
+            "temporal_bit_agreement": 0.6449605972625466,
+            "fixed_key_chroma_cosine": 0.9010038809308365
+          },
+          {
+            "start_seconds": 53.91673469387755,
+            "end_seconds": 65.89823129251701,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4791,
+            "temporal_bit_agreement": 0.6395324566896263,
+            "fixed_key_chroma_cosine": 0.8967643425031504
+          },
+          {
+            "start_seconds": 59.90748299319728,
+            "end_seconds": 71.88897959183673,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4816,
+            "temporal_bit_agreement": 0.6353820598006644,
+            "fixed_key_chroma_cosine": 0.8869938693077807
+          },
+          {
+            "start_seconds": 65.89823129251701,
+            "end_seconds": 77.87972789115646,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4903,
+            "temporal_bit_agreement": 0.64022027330206,
+            "fixed_key_chroma_cosine": 0.8864470779592338
+          },
+          {
+            "start_seconds": 71.88897959183673,
+            "end_seconds": 83.8704761904762,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4887,
+            "temporal_bit_agreement": 0.6417024759566196,
+            "fixed_key_chroma_cosine": 0.8738952417124154
+          },
+          {
+            "start_seconds": 77.87972789115646,
+            "end_seconds": 89.86122448979592,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4883,
+            "temporal_bit_agreement": 0.6248208068810158,
+            "fixed_key_chroma_cosine": 0.877300787888864
+          },
+          {
+            "start_seconds": 83.8704761904762,
+            "end_seconds": 95.85197278911565,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4910,
+            "temporal_bit_agreement": 0.6274949083503055,
+            "fixed_key_chroma_cosine": 0.8949100194337305
+          },
+          {
+            "start_seconds": 89.86122448979592,
+            "end_seconds": 101.84272108843537,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4804,
+            "temporal_bit_agreement": 0.6452955870108243,
+            "fixed_key_chroma_cosine": 0.8857423665803876
+          },
+          {
+            "start_seconds": 95.85197278911565,
+            "end_seconds": 107.8334693877551,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4751,
+            "temporal_bit_agreement": 0.6322879393811829,
+            "fixed_key_chroma_cosine": 0.8878800448138735
+          },
+          {
+            "start_seconds": 101.84272108843537,
+            "end_seconds": 113.82421768707484,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4735,
+            "temporal_bit_agreement": 0.6120380147835269,
+            "fixed_key_chroma_cosine": 0.8864178247978292
+          },
+          {
+            "start_seconds": 107.8334693877551,
+            "end_seconds": 119.81496598639455,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4744,
+            "temporal_bit_agreement": 0.6239460370994941,
+            "fixed_key_chroma_cosine": 0.8969599553017252
+          },
+          {
+            "start_seconds": 113.82421768707484,
+            "end_seconds": 125.80571428571429,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4870,
+            "temporal_bit_agreement": 0.6363449691991786,
+            "fixed_key_chroma_cosine": 0.906573615446273
+          },
+          {
+            "start_seconds": 119.81496598639455,
+            "end_seconds": 131.79646258503402,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4864,
+            "temporal_bit_agreement": 0.6447368421052632,
+            "fixed_key_chroma_cosine": 0.9012188286848172
+          },
+          {
+            "start_seconds": 125.80571428571429,
+            "end_seconds": 137.78721088435375,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4792,
+            "temporal_bit_agreement": 0.6467028380634391,
+            "fixed_key_chroma_cosine": 0.902160082697445
+          },
+          {
+            "start_seconds": 131.79646258503402,
+            "end_seconds": 143.77795918367346,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4898,
+            "temporal_bit_agreement": 0.6563903634136382,
+            "fixed_key_chroma_cosine": 0.9070950740487522
+          },
+          {
+            "start_seconds": 137.78721088435375,
+            "end_seconds": 149.7687074829932,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4973,
+            "temporal_bit_agreement": 0.6712246129097125,
+            "fixed_key_chroma_cosine": 0.9157338667966847
+          },
+          {
+            "start_seconds": 143.77795918367346,
+            "end_seconds": 155.75945578231293,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4948,
+            "temporal_bit_agreement": 0.6893694421988682,
+            "fixed_key_chroma_cosine": 0.9247485201888492
+          },
+          {
+            "start_seconds": 149.7687074829932,
+            "end_seconds": 161.75020408163266,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4876,
+            "temporal_bit_agreement": 0.6833470057424118,
+            "fixed_key_chroma_cosine": 0.9284269960360547
+          },
+          {
+            "start_seconds": 155.75945578231293,
+            "end_seconds": 167.7409523809524,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4869,
+            "temporal_bit_agreement": 0.6703635243376463,
+            "fixed_key_chroma_cosine": 0.9199206908925774
+          },
+          {
+            "start_seconds": 161.75020408163266,
+            "end_seconds": 173.7317006802721,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4868,
+            "temporal_bit_agreement": 0.6672144617912901,
+            "fixed_key_chroma_cosine": 0.9029521275865785
+          },
+          {
+            "start_seconds": 167.7409523809524,
+            "end_seconds": 179.72244897959183,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4744,
+            "temporal_bit_agreement": 0.6452360876897133,
+            "fixed_key_chroma_cosine": 0.8962838178691196
+          },
+          {
+            "start_seconds": 173.7317006802721,
+            "end_seconds": 185.71319727891157,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4711,
+            "temporal_bit_agreement": 0.6357461260878794,
+            "fixed_key_chroma_cosine": 0.8954699607222225
+          },
+          {
+            "start_seconds": 179.72244897959183,
+            "end_seconds": 191.7039455782313,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4822,
+            "temporal_bit_agreement": 0.6470344255495645,
+            "fixed_key_chroma_cosine": 0.9029063403105143
+          },
+          {
+            "start_seconds": 185.71319727891157,
+            "end_seconds": 197.69469387755103,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4824,
+            "temporal_bit_agreement": 0.6488391376451078,
+            "fixed_key_chroma_cosine": 0.9022900697866323
+          },
+          {
+            "start_seconds": 191.7039455782313,
+            "end_seconds": 203.68544217687074,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4769,
+            "temporal_bit_agreement": 0.6391276997274061,
+            "fixed_key_chroma_cosine": 0.8934222157797533
+          },
+          {
+            "start_seconds": 197.69469387755103,
+            "end_seconds": 209.67619047619047,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4826,
+            "temporal_bit_agreement": 0.6475341898052217,
+            "fixed_key_chroma_cosine": 0.8846534521625015
+          },
+          {
+            "start_seconds": 203.68544217687074,
+            "end_seconds": 215.6669387755102,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4833,
+            "temporal_bit_agreement": 0.654252017380509,
+            "fixed_key_chroma_cosine": 0.8856094548319237
+          },
+          {
+            "start_seconds": 209.67619047619047,
+            "end_seconds": 221.65768707482994,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4694,
+            "temporal_bit_agreement": 0.6435875585854282,
+            "fixed_key_chroma_cosine": 0.8891692462003052
+          },
+          {
+            "start_seconds": 215.6669387755102,
+            "end_seconds": 227.64843537414967,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4553,
+            "temporal_bit_agreement": 0.6417746540742367,
+            "fixed_key_chroma_cosine": 0.8844424459000942
+          },
+          {
+            "start_seconds": 221.65768707482994,
+            "end_seconds": 233.63918367346938,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4577,
+            "temporal_bit_agreement": 0.6285776709635132,
+            "fixed_key_chroma_cosine": 0.8687879014972499
+          },
+          {
+            "start_seconds": 227.64843537414967,
+            "end_seconds": 239.6299319727891,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4638,
+            "temporal_bit_agreement": 0.6019836136265632,
+            "fixed_key_chroma_cosine": 0.8493247731703369
+          },
+          {
+            "start_seconds": 228.34503401360544,
+            "end_seconds": 240.3265306122449,
+            "status": "measured",
+            "comparable_frames": 248,
+            "compared_bits": 4475,
+            "temporal_bit_agreement": 0.6011173184357542,
+            "fixed_key_chroma_cosine": 0.8480378004448121
+          }
+        ],
+        "recognition_verdict": "not_available: local diagnostics are not an API match test"
+      }
+    },
+    {
+      "name": "stacked-ten",
+      "settings": {
+        "low": 250,
+        "high": 4500,
+        "levels": 7,
+        "stages": 10
+      },
+      "comparison": {
+        "method": "CopyFinger LocalPrint v1",
+        "alignment": "zero lag; no search, pitch rotation or time warp",
+        "fingerprint_sha256_equal": false,
+        "original_fingerprint_sha256": "6ccde2787c05069d4b826d02edbcedc8ef7ed5d719cb3af4d348ebc5e04df664",
+        "converted_fingerprint_sha256": "10f274ab8d7feca6a759476a1fc2e801f74e5911e83a71b1b1f2bf9f05e6c6fb",
+        "duration_difference_seconds": 0.0,
+        "original_frames": 5175,
+        "converted_frames": 5175,
+        "frame_step_seconds": 0.046439909297052155,
+        "shared_timeline_seconds": 240.3265306122449,
+        "whole_overlap": {
+          "status": "measured",
+          "comparable_frames": 5162,
+          "compared_bits": 95863,
+          "temporal_bit_agreement": 0.6257471600095971,
+          "fixed_key_chroma_cosine": 0.880888682532773
+        },
+        "windows": [
+          {
+            "start_seconds": 0.0,
+            "end_seconds": 11.981496598639456,
+            "status": "measured",
+            "comparable_frames": 255,
+            "compared_bits": 4734,
+            "temporal_bit_agreement": 0.6106886354034643,
+            "fixed_key_chroma_cosine": 0.7960740864191206
+          },
+          {
+            "start_seconds": 5.990748299319728,
+            "end_seconds": 17.972244897959182,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4787,
+            "temporal_bit_agreement": 0.6283684980154586,
+            "fixed_key_chroma_cosine": 0.8094261731369766
+          },
+          {
+            "start_seconds": 11.981496598639456,
+            "end_seconds": 23.962993197278912,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4728,
+            "temporal_bit_agreement": 0.6410744500846024,
+            "fixed_key_chroma_cosine": 0.8579178432587824
+          },
+          {
+            "start_seconds": 17.972244897959182,
+            "end_seconds": 29.95374149659864,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4759,
+            "temporal_bit_agreement": 0.6484555578903131,
+            "fixed_key_chroma_cosine": 0.8882866093464836
+          },
+          {
+            "start_seconds": 23.962993197278912,
+            "end_seconds": 35.944489795918365,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4787,
+            "temporal_bit_agreement": 0.6454982243576353,
+            "fixed_key_chroma_cosine": 0.8964092656656559
+          },
+          {
+            "start_seconds": 29.95374149659864,
+            "end_seconds": 41.9352380952381,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4751,
+            "temporal_bit_agreement": 0.6383919174910545,
+            "fixed_key_chroma_cosine": 0.8901668612220909
+          },
+          {
+            "start_seconds": 35.944489795918365,
+            "end_seconds": 47.925986394557825,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4750,
+            "temporal_bit_agreement": 0.624421052631579,
+            "fixed_key_chroma_cosine": 0.8886229527259102
+          },
+          {
+            "start_seconds": 41.9352380952381,
+            "end_seconds": 53.91673469387755,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4799,
+            "temporal_bit_agreement": 0.6286726401333611,
+            "fixed_key_chroma_cosine": 0.8961776638592165
+          },
+          {
+            "start_seconds": 47.925986394557825,
+            "end_seconds": 59.90748299319728,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4811,
+            "temporal_bit_agreement": 0.6395759717314488,
+            "fixed_key_chroma_cosine": 0.8954194954685336
+          },
+          {
+            "start_seconds": 53.91673469387755,
+            "end_seconds": 65.89823129251701,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4789,
+            "temporal_bit_agreement": 0.6249738985174358,
+            "fixed_key_chroma_cosine": 0.8910954391276907
+          },
+          {
+            "start_seconds": 59.90748299319728,
+            "end_seconds": 71.88897959183673,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4773,
+            "temporal_bit_agreement": 0.6149172428242196,
+            "fixed_key_chroma_cosine": 0.8799873500339075
+          },
+          {
+            "start_seconds": 65.89823129251701,
+            "end_seconds": 77.87972789115646,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4905,
+            "temporal_bit_agreement": 0.6187563710499491,
+            "fixed_key_chroma_cosine": 0.8773092896178533
+          },
+          {
+            "start_seconds": 71.88897959183673,
+            "end_seconds": 83.8704761904762,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4930,
+            "temporal_bit_agreement": 0.6133874239350913,
+            "fixed_key_chroma_cosine": 0.8585124804533217
+          },
+          {
+            "start_seconds": 77.87972789115646,
+            "end_seconds": 89.86122448979592,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4893,
+            "temporal_bit_agreement": 0.6094420600858369,
+            "fixed_key_chroma_cosine": 0.8603076164773441
+          },
+          {
+            "start_seconds": 83.8704761904762,
+            "end_seconds": 95.85197278911565,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4894,
+            "temporal_bit_agreement": 0.6107478545157335,
+            "fixed_key_chroma_cosine": 0.883569843835593
+          },
+          {
+            "start_seconds": 89.86122448979592,
+            "end_seconds": 101.84272108843537,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4804,
+            "temporal_bit_agreement": 0.61511240632806,
+            "fixed_key_chroma_cosine": 0.8786889825574287
+          },
+          {
+            "start_seconds": 95.85197278911565,
+            "end_seconds": 107.8334693877551,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4785,
+            "temporal_bit_agreement": 0.6081504702194357,
+            "fixed_key_chroma_cosine": 0.8826607496087381
+          },
+          {
+            "start_seconds": 101.84272108843537,
+            "end_seconds": 113.82421768707484,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4757,
+            "temporal_bit_agreement": 0.5875551818372924,
+            "fixed_key_chroma_cosine": 0.8825729786509767
+          },
+          {
+            "start_seconds": 107.8334693877551,
+            "end_seconds": 119.81496598639455,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4748,
+            "temporal_bit_agreement": 0.6017270429654591,
+            "fixed_key_chroma_cosine": 0.8919102824219783
+          },
+          {
+            "start_seconds": 113.82421768707484,
+            "end_seconds": 125.80571428571429,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4837,
+            "temporal_bit_agreement": 0.6229067603886707,
+            "fixed_key_chroma_cosine": 0.8993004971421961
+          },
+          {
+            "start_seconds": 119.81496598639455,
+            "end_seconds": 131.79646258503402,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4833,
+            "temporal_bit_agreement": 0.6263190564866542,
+            "fixed_key_chroma_cosine": 0.8941324801353016
+          },
+          {
+            "start_seconds": 125.80571428571429,
+            "end_seconds": 137.78721088435375,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4773,
+            "temporal_bit_agreement": 0.633563796354494,
+            "fixed_key_chroma_cosine": 0.8962272588444388
+          },
+          {
+            "start_seconds": 131.79646258503402,
+            "end_seconds": 143.77795918367346,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4836,
+            "temporal_bit_agreement": 0.6430934656741109,
+            "fixed_key_chroma_cosine": 0.9019528158717803
+          },
+          {
+            "start_seconds": 137.78721088435375,
+            "end_seconds": 149.7687074829932,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4928,
+            "temporal_bit_agreement": 0.6580762987012987,
+            "fixed_key_chroma_cosine": 0.9103899939409474
+          },
+          {
+            "start_seconds": 143.77795918367346,
+            "end_seconds": 155.75945578231293,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4930,
+            "temporal_bit_agreement": 0.6831643002028398,
+            "fixed_key_chroma_cosine": 0.9178269596914778
+          },
+          {
+            "start_seconds": 149.7687074829932,
+            "end_seconds": 161.75020408163266,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4883,
+            "temporal_bit_agreement": 0.6731517509727627,
+            "fixed_key_chroma_cosine": 0.9195561057798383
+          },
+          {
+            "start_seconds": 155.75945578231293,
+            "end_seconds": 167.7409523809524,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4866,
+            "temporal_bit_agreement": 0.6479654747225647,
+            "fixed_key_chroma_cosine": 0.9128595247144964
+          },
+          {
+            "start_seconds": 161.75020408163266,
+            "end_seconds": 173.7317006802721,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4858,
+            "temporal_bit_agreement": 0.637710992177851,
+            "fixed_key_chroma_cosine": 0.89764024536626
+          },
+          {
+            "start_seconds": 167.7409523809524,
+            "end_seconds": 179.72244897959183,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4762,
+            "temporal_bit_agreement": 0.619067618647627,
+            "fixed_key_chroma_cosine": 0.8898901457676969
+          },
+          {
+            "start_seconds": 173.7317006802721,
+            "end_seconds": 185.71319727891157,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4692,
+            "temporal_bit_agreement": 0.6129582267689685,
+            "fixed_key_chroma_cosine": 0.890377947155477
+          },
+          {
+            "start_seconds": 179.72244897959183,
+            "end_seconds": 191.7039455782313,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4784,
+            "temporal_bit_agreement": 0.6383779264214047,
+            "fixed_key_chroma_cosine": 0.8976053748951707
+          },
+          {
+            "start_seconds": 185.71319727891157,
+            "end_seconds": 197.69469387755103,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4838,
+            "temporal_bit_agreement": 0.6409673418768086,
+            "fixed_key_chroma_cosine": 0.8956323799636269
+          },
+          {
+            "start_seconds": 191.7039455782313,
+            "end_seconds": 203.68544217687074,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4755,
+            "temporal_bit_agreement": 0.6271293375394322,
+            "fixed_key_chroma_cosine": 0.8866018526745185
+          },
+          {
+            "start_seconds": 197.69469387755103,
+            "end_seconds": 209.67619047619047,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4816,
+            "temporal_bit_agreement": 0.6324750830564784,
+            "fixed_key_chroma_cosine": 0.8754202131392055
+          },
+          {
+            "start_seconds": 203.68544217687074,
+            "end_seconds": 215.6669387755102,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4848,
+            "temporal_bit_agreement": 0.6297442244224423,
+            "fixed_key_chroma_cosine": 0.8753470361354785
+          },
+          {
+            "start_seconds": 209.67619047619047,
+            "end_seconds": 221.65768707482994,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4674,
+            "temporal_bit_agreement": 0.6069747539580659,
+            "fixed_key_chroma_cosine": 0.880353326790165
+          },
+          {
+            "start_seconds": 215.6669387755102,
+            "end_seconds": 227.64843537414967,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4579,
+            "temporal_bit_agreement": 0.599912644682245,
+            "fixed_key_chroma_cosine": 0.8788218837777815
+          },
+          {
+            "start_seconds": 221.65768707482994,
+            "end_seconds": 233.63918367346938,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4611,
+            "temporal_bit_agreement": 0.6068098026458469,
+            "fixed_key_chroma_cosine": 0.8579379822162826
+          },
+          {
+            "start_seconds": 227.64843537414967,
+            "end_seconds": 239.6299319727891,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4638,
+            "temporal_bit_agreement": 0.5877533419577404,
+            "fixed_key_chroma_cosine": 0.8292286938844701
+          },
+          {
+            "start_seconds": 228.34503401360544,
+            "end_seconds": 240.3265306122449,
+            "status": "measured",
+            "comparable_frames": 248,
+            "compared_bits": 4472,
+            "temporal_bit_agreement": 0.5849731663685152,
+            "fixed_key_chroma_cosine": 0.8270137020531279
+          }
+        ],
+        "recognition_verdict": "not_available: local diagnostics are not an API match test"
+      }
+    },
+    {
+      "name": "stacked-telephone",
+      "settings": {
+        "low": 400,
+        "high": 3000,
+        "levels": 3,
+        "stages": 6
+      },
+      "comparison": {
+        "method": "CopyFinger LocalPrint v1",
+        "alignment": "zero lag; no search, pitch rotation or time warp",
+        "fingerprint_sha256_equal": false,
+        "original_fingerprint_sha256": "6ccde2787c05069d4b826d02edbcedc8ef7ed5d719cb3af4d348ebc5e04df664",
+        "converted_fingerprint_sha256": "6f55bb571f1ed9985eeeaa168f8adbef3442f8535703b9e8f8786dc911cb4601",
+        "duration_difference_seconds": 0.0,
+        "original_frames": 5175,
+        "converted_frames": 5175,
+        "frame_step_seconds": 0.046439909297052155,
+        "shared_timeline_seconds": 240.3265306122449,
+        "whole_overlap": {
+          "status": "measured",
+          "comparable_frames": 5162,
+          "compared_bits": 95845,
+          "temporal_bit_agreement": 0.6216286712921906,
+          "fixed_key_chroma_cosine": 0.8774829484188069
+        },
+        "windows": [
+          {
+            "start_seconds": 0.0,
+            "end_seconds": 11.981496598639456,
+            "status": "measured",
+            "comparable_frames": 255,
+            "compared_bits": 4676,
+            "temporal_bit_agreement": 0.61633875106929,
+            "fixed_key_chroma_cosine": 0.7914994580970968
+          },
+          {
+            "start_seconds": 5.990748299319728,
+            "end_seconds": 17.972244897959182,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4755,
+            "temporal_bit_agreement": 0.628391167192429,
+            "fixed_key_chroma_cosine": 0.804961151507443
+          },
+          {
+            "start_seconds": 11.981496598639456,
+            "end_seconds": 23.962993197278912,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4721,
+            "temporal_bit_agreement": 0.6307985596271977,
+            "fixed_key_chroma_cosine": 0.8520249192036657
+          },
+          {
+            "start_seconds": 17.972244897959182,
+            "end_seconds": 29.95374149659864,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4800,
+            "temporal_bit_agreement": 0.6322916666666667,
+            "fixed_key_chroma_cosine": 0.8851470641963955
+          },
+          {
+            "start_seconds": 23.962993197278912,
+            "end_seconds": 35.944489795918365,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4866,
+            "temporal_bit_agreement": 0.6304973284011508,
+            "fixed_key_chroma_cosine": 0.8909315924949063
+          },
+          {
+            "start_seconds": 29.95374149659864,
+            "end_seconds": 41.9352380952381,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4776,
+            "temporal_bit_agreement": 0.6291876046901173,
+            "fixed_key_chroma_cosine": 0.8863409173995231
+          },
+          {
+            "start_seconds": 35.944489795918365,
+            "end_seconds": 47.925986394557825,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4745,
+            "temporal_bit_agreement": 0.6297154899894626,
+            "fixed_key_chroma_cosine": 0.8863766336578379
+          },
+          {
+            "start_seconds": 41.9352380952381,
+            "end_seconds": 53.91673469387755,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4827,
+            "temporal_bit_agreement": 0.6212968717629997,
+            "fixed_key_chroma_cosine": 0.893350004952772
+          },
+          {
+            "start_seconds": 47.925986394557825,
+            "end_seconds": 59.90748299319728,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4820,
+            "temporal_bit_agreement": 0.6145228215767635,
+            "fixed_key_chroma_cosine": 0.8906129444013519
+          },
+          {
+            "start_seconds": 53.91673469387755,
+            "end_seconds": 65.89823129251701,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4815,
+            "temporal_bit_agreement": 0.6151609553478712,
+            "fixed_key_chroma_cosine": 0.887533054930541
+          },
+          {
+            "start_seconds": 59.90748299319728,
+            "end_seconds": 71.88897959183673,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4832,
+            "temporal_bit_agreement": 0.6074089403973509,
+            "fixed_key_chroma_cosine": 0.8796170577778019
+          },
+          {
+            "start_seconds": 65.89823129251701,
+            "end_seconds": 77.87972789115646,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4892,
+            "temporal_bit_agreement": 0.6122240392477515,
+            "fixed_key_chroma_cosine": 0.8769570629230375
+          },
+          {
+            "start_seconds": 71.88897959183673,
+            "end_seconds": 83.8704761904762,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4870,
+            "temporal_bit_agreement": 0.6201232032854209,
+            "fixed_key_chroma_cosine": 0.858468429638105
+          },
+          {
+            "start_seconds": 77.87972789115646,
+            "end_seconds": 89.86122448979592,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4863,
+            "temporal_bit_agreement": 0.6119679210363973,
+            "fixed_key_chroma_cosine": 0.8548534042129098
+          },
+          {
+            "start_seconds": 83.8704761904762,
+            "end_seconds": 95.85197278911565,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4925,
+            "temporal_bit_agreement": 0.6146192893401016,
+            "fixed_key_chroma_cosine": 0.882849471765468
+          },
+          {
+            "start_seconds": 89.86122448979592,
+            "end_seconds": 101.84272108843537,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4827,
+            "temporal_bit_agreement": 0.6221255438160348,
+            "fixed_key_chroma_cosine": 0.8818670581966042
+          },
+          {
+            "start_seconds": 95.85197278911565,
+            "end_seconds": 107.8334693877551,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4759,
+            "temporal_bit_agreement": 0.615465433914688,
+            "fixed_key_chroma_cosine": 0.8786365529935052
+          },
+          {
+            "start_seconds": 101.84272108843537,
+            "end_seconds": 113.82421768707484,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4747,
+            "temporal_bit_agreement": 0.6060669896776911,
+            "fixed_key_chroma_cosine": 0.8795132072584425
+          },
+          {
+            "start_seconds": 107.8334693877551,
+            "end_seconds": 119.81496598639455,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4743,
+            "temporal_bit_agreement": 0.6059456040480709,
+            "fixed_key_chroma_cosine": 0.8892587451478499
+          },
+          {
+            "start_seconds": 113.82421768707484,
+            "end_seconds": 125.80571428571429,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4835,
+            "temporal_bit_agreement": 0.6113753877973113,
+            "fixed_key_chroma_cosine": 0.8965607849542135
+          },
+          {
+            "start_seconds": 119.81496598639455,
+            "end_seconds": 131.79646258503402,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4886,
+            "temporal_bit_agreement": 0.6268931641424478,
+            "fixed_key_chroma_cosine": 0.8932622877460508
+          },
+          {
+            "start_seconds": 125.80571428571429,
+            "end_seconds": 137.78721088435375,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4852,
+            "temporal_bit_agreement": 0.6261335531739489,
+            "fixed_key_chroma_cosine": 0.8936845343288283
+          },
+          {
+            "start_seconds": 131.79646258503402,
+            "end_seconds": 143.77795918367346,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4905,
+            "temporal_bit_agreement": 0.6216106014271152,
+            "fixed_key_chroma_cosine": 0.8984069430710672
+          },
+          {
+            "start_seconds": 137.78721088435375,
+            "end_seconds": 149.7687074829932,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4961,
+            "temporal_bit_agreement": 0.6414029429550494,
+            "fixed_key_chroma_cosine": 0.9064354227844835
+          },
+          {
+            "start_seconds": 143.77795918367346,
+            "end_seconds": 155.75945578231293,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4909,
+            "temporal_bit_agreement": 0.6561417804033408,
+            "fixed_key_chroma_cosine": 0.9143717363673682
+          },
+          {
+            "start_seconds": 149.7687074829932,
+            "end_seconds": 161.75020408163266,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4807,
+            "temporal_bit_agreement": 0.6490534636987726,
+            "fixed_key_chroma_cosine": 0.9147799064126555
+          },
+          {
+            "start_seconds": 155.75945578231293,
+            "end_seconds": 167.7409523809524,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4830,
+            "temporal_bit_agreement": 0.622360248447205,
+            "fixed_key_chroma_cosine": 0.9074498368049005
+          },
+          {
+            "start_seconds": 161.75020408163266,
+            "end_seconds": 173.7317006802721,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4857,
+            "temporal_bit_agreement": 0.6186946674902203,
+            "fixed_key_chroma_cosine": 0.8955277576566165
+          },
+          {
+            "start_seconds": 167.7409523809524,
+            "end_seconds": 179.72244897959183,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4764,
+            "temporal_bit_agreement": 0.6269941225860621,
+            "fixed_key_chroma_cosine": 0.8887734008572704
+          },
+          {
+            "start_seconds": 173.7317006802721,
+            "end_seconds": 185.71319727891157,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4738,
+            "temporal_bit_agreement": 0.6333896158716759,
+            "fixed_key_chroma_cosine": 0.8880693840373873
+          },
+          {
+            "start_seconds": 179.72244897959183,
+            "end_seconds": 191.7039455782313,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4777,
+            "temporal_bit_agreement": 0.6349173121205778,
+            "fixed_key_chroma_cosine": 0.893663646384104
+          },
+          {
+            "start_seconds": 185.71319727891157,
+            "end_seconds": 197.69469387755103,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4784,
+            "temporal_bit_agreement": 0.6285535117056856,
+            "fixed_key_chroma_cosine": 0.8903711423195763
+          },
+          {
+            "start_seconds": 191.7039455782313,
+            "end_seconds": 203.68544217687074,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4753,
+            "temporal_bit_agreement": 0.632442667788765,
+            "fixed_key_chroma_cosine": 0.8836140331172048
+          },
+          {
+            "start_seconds": 197.69469387755103,
+            "end_seconds": 209.67619047619047,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4776,
+            "temporal_bit_agreement": 0.628140703517588,
+            "fixed_key_chroma_cosine": 0.8705320453112964
+          },
+          {
+            "start_seconds": 203.68544217687074,
+            "end_seconds": 215.6669387755102,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4777,
+            "temporal_bit_agreement": 0.6179610634289303,
+            "fixed_key_chroma_cosine": 0.8660859981915265
+          },
+          {
+            "start_seconds": 209.67619047619047,
+            "end_seconds": 221.65768707482994,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4685,
+            "temporal_bit_agreement": 0.607897545357524,
+            "fixed_key_chroma_cosine": 0.8751953162795677
+          },
+          {
+            "start_seconds": 215.6669387755102,
+            "end_seconds": 227.64843537414967,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4579,
+            "temporal_bit_agreement": 0.6167285433500764,
+            "fixed_key_chroma_cosine": 0.8764073628530457
+          },
+          {
+            "start_seconds": 221.65768707482994,
+            "end_seconds": 233.63918367346938,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4575,
+            "temporal_bit_agreement": 0.6146448087431694,
+            "fixed_key_chroma_cosine": 0.858333414085255
+          },
+          {
+            "start_seconds": 227.64843537414967,
+            "end_seconds": 239.6299319727891,
+            "status": "measured",
+            "comparable_frames": 258,
+            "compared_bits": 4617,
+            "temporal_bit_agreement": 0.589993502274204,
+            "fixed_key_chroma_cosine": 0.8270434491078273
+          },
+          {
+            "start_seconds": 228.34503401360544,
+            "end_seconds": 240.3265306122449,
+            "status": "measured",
+            "comparable_frames": 248,
+            "compared_bits": 4450,
+            "temporal_bit_agreement": 0.5878651685393258,
+            "fixed_key_chroma_cosine": 0.8225195887069179
+          }
+        ],
+        "recognition_verdict": "not_available: local diagnostics are not an API match test"
+      }
+    }
+  ],
+  "selected": "stacked-seven",
+  "target_met": true,
+  "recognition": "not tested; local similarity is not recognition probability"
+}

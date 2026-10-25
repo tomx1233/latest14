@@ -1,0 +1,177 @@
+{
+  "input_sha256": {
+    "beforeeffects.ogg": "ba3050f3ab42f9698a5e5ddc45d133287a074c1a7dc5a85a015d2d5189ed3a6a",
+    "aftereffects.ogg": "74eab28cc1895d6007a3cdd709cbd3d2f9db4adb0477056b6bcfac564cd46f7d",
+    "macros/AutoFit V5 Reference.json": "2756f32026092dcf195e1f6c182c23fd4c715194fcbc6aa9a0ba7120c1f85278"
+  },
+  "analysis_only_reference_offset_seconds": -0.29,
+  "train_starts": [
+    10.0,
+    45.12667803030303,
+    80.25335606060607,
+    115.3800340909091,
+    150.50671212121213,
+    185.63339015151516
+  ],
+  "validation_starts": [
+    27.563339015151517,
+    62.69001704545455,
+    97.81669507575758,
+    132.94337310606062,
+    168.07005113636365,
+    203.19672916666667
+  ],
+  "candidates": [
+    {
+      "profile": {
+        "band_db": [
+          -6.663077474093169,
+          4.0111158290745585,
+          0,
+          1.2637999077106175,
+          -0.9228473637655397
+        ],
+        "drive_db": 0.0,
+        "output_db": -4.745225047869733,
+        "compression": 0.03922161203066517,
+        "side_gain": 1.2336549397669403,
+        "nonlinearity": "linear",
+        "pitch_semitones": 0.0,
+        "tempo_factor": 1.0,
+        "speed_factor": 1.0
+      },
+      "train_score": 0.4864315437516364,
+      "validation_score": 0.323105855520331
+    },
+    {
+      "profile": {
+        "band_db": [
+          -23.99600449911134,
+          3.863703024508246,
+          0,
+          1.1210178389041598,
+          -1.4403590637364945
+        ],
+        "drive_db": -9.454473147166185,
+        "output_db": 4.916199704952699,
+        "compression": 0.0012829459029260113,
+        "side_gain": 1.4754346111882417,
+        "nonlinearity": "tanh",
+        "pitch_semitones": 0.0,
+        "tempo_factor": 1.0,
+        "speed_factor": 1.0
+      },
+      "train_score": 0.43499028372397935,
+      "validation_score": 0.23293544265839672
+    }
+  ],
+  "selected_profile": {
+    "band_db": [
+      -23.99600449911134,
+      3.863703024508246,
+      0,
+      1.1210178389041598,
+      -1.4403590637364945
+    ],
+    "drive_db": -9.454473147166185,
+    "output_db": 4.916199704952699,
+    "compression": 0.0012829459029260113,
+    "side_gain": 0.8703913577862699,
+    "nonlinearity": "tanh",
+    "pitch_semitones": 0.0,
+    "tempo_factor": 1.0,
+    "speed_factor": 1.0
+  },
+  "full_song_stereo_refinement_scale": 0.5899220142906231,
+  "original": {
+    "samples": 10329443,
+    "sample_rate": 48000,
+    "channels": 2,
+    "duration_seconds": 215.19672916666667,
+    "rms": 0.33845875722810725,
+    "rms_dbfs": -9.409884891098589,
+    "sample_peak": 1.3139928579330444,
+    "crest_db": 11.781744984482538,
+    "envelope_p95_p5_db": 22.915978961973515,
+    "lr_correlation": 0.9519275781956911,
+    "centroid_hz": 351.7945616163706,
+    "rolloff95_hz": 1359.375
+  },
+  "reference_entire": {
+    "samples": 10551168,
+    "sample_rate": 48000,
+    "channels": 2,
+    "duration_seconds": 219.816,
+    "rms": 0.2798192760410462,
+    "rms_dbfs": -11.06244742734074,
+    "sample_peak": 1.0496070384979248,
+    "crest_db": 11.482982114362695,
+    "envelope_p95_p5_db": 34.16670204185646,
+    "lr_correlation": 0.9803901152387969,
+    "centroid_hz": 283.73638674244825,
+    "rolloff95_hz": 1089.84375
+  },
+  "fitted_entire": {
+    "samples": 10329443,
+    "sample_rate": 48000,
+    "channels": 2,
+    "duration_seconds": 215.19672916666667,
+    "rms": 0.27117786557571705,
+    "rms_dbfs": -11.334915237886506,
+    "sample_peak": 1.0505265755846898,
+    "crest_db": 11.763056105877695,
+    "envelope_p95_p5_db": 26.24949991772025,
+    "lr_correlation": 0.9803901152388024,
+    "centroid_hz": 206.4265532293267,
+    "rolloff95_hz": 714.84375
+  },
+  "copyfinger": {
+    "samples": 10329443,
+    "sample_rate": 48000,
+    "channels": 2,
+    "duration_seconds": 215.19672916666667,
+    "rms": 0.7971366786267744,
+    "rms_dbfs": -1.9693441446191535,
+    "sample_peak": 1.073943615940843,
+    "crest_db": 2.5889737583226236,
+    "envelope_p95_p5_db": 1.7980000577511703,
+    "lr_correlation": 0.7047862137361985,
+    "centroid_hz": 2214.882725066161,
+    "rolloff95_hz": 8988.28125
+  },
+  "note": "No reference offset/tail/tuning applied to output. No live recognition or subjective listening.",
+  "musical_timing": "No clock change, time stretch, sample shift, crop or padding",
+  "delivery": {
+    "samples": 10329443,
+    "sample_rate": 48000,
+    "channels": 2,
+    "duration_seconds": 215.19672916666667,
+    "rms": 0.22939117148214103,
+    "rms_dbfs": -12.788466013818917,
+    "sample_peak": 0.8920538425445557,
+    "crest_db": 11.796287379688625,
+    "envelope_p95_p5_db": 26.300282444396338,
+    "lr_correlation": 0.980552413988513,
+    "centroid_hz": 201.44783963408,
+    "rolloff95_hz": 691.40625
+  },
+  "fingerprint_diagnostic": {
+    "zero_lag": {
+      "status": "measured",
+      "comparable_frames": 4614,
+      "compared_bits": 89048,
+      "temporal_bit_agreement": 0.46929745755098373,
+      "fixed_key_chroma_cosine": 0.8246730485756837
+    },
+    "analysis_only_source_descriptor_offset_frames": 6,
+    "analysis_only_offset_seconds": 0.2786394557823129,
+    "offset_compared": {
+      "status": "measured",
+      "comparable_frames": 4615,
+      "compared_bits": 89829,
+      "temporal_bit_agreement": 0.7576729118658785,
+      "fixed_key_chroma_cosine": 0.9386139712451231
+    },
+    "note": "Descriptor-only alignment diagnostic, not a recognition result. No audio or processing timeline shifted."
+  }
+}
